@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+      body{width: 97%;margin: 0 auto;padding: 0; }  
+      *{padding: 0; margin:0;}
+      .buttons-tab{width: 77%;float: left;height: 2rem;background: none;}
+      .buttons-tab .button{
+        height: 1.6rem;
+        line-height: 1.4rem;
+      }
+      .good-info{display: flex; }
+      .good-info span:nth-child(1){width: 90%; font-size:.75rem;}
+      .good-info .icon-right{  margin: .4rem;}
+      .price-div{display: flex;height: 2rem;line-height: 2rem;color: red; border-bottom: 1px solid #ccc;}
+      .price-div lable:nth-child(1){font-size: larger;margin-left: .2rem;}
+      .price-div lable:nth-child(2){font-size: xx-large;margin-left: .2rem;}
+      .choice-div{display: flex;height: 2rem;line-height: 2rem; border-bottom: 1px solid #ccc;}
+      .choice-div lable:nth-child(1){font-size: .77rem;margin-right: .2rem;color: #ccc;}
+      .service div{border: 0} 
+      .service div:nth-child(3){border-bottom: 1px solid #ccc;}
+      .good-assess{ width: 100%; margin-top: .3rem; border-bottom: 1px solid #ccc;}
+      .good-assess .good-assess-tille{display:flex; width: 100%; }
+      .good-assess .good-assess-tille span:nth-child(1){width: 94%;}
+    </style>
+  </head>
+  <body>
+      <div class="page-group">
+        <!-- 单个page ,第一个.page默认被展示-->
+        <div class="page">
+            <!-- 标题栏 -->
+            <header class="bar bar-nav"><a class="button button-link button-nav pull-left" href="/demos/card" data-transition='slide-out'>
+              返回
+            </a>
+             <div class="buttons-tab">
+                <a href="#tab1" class="tab-link active button">商品</a>
+                <a href="#tab2" class="tab-link button">详情</a>
+                <a href="#tab3" class="tab-link button">评价</a>
+              </div>
+                <a class="icon icon-me pull-right open-panel"></a>
+                <!-- <h1 class="title">商品明细</h1> -->
+            </header>
+
+            <!-- 工具栏 -->
+            <nav class="bar bar-tab">
+                <a class="tab-item external active" href="#">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">首页</span>
+                </a>
+                <a class="tab-item external toCart" href="#">
+                    <span class="icon icon-cart"></span>
+                    <span class="tab-label">购物车</span>
+                </a>
+                <a class="tab-item external add-cart" href="#">
+                    <span class="icon icon-star"></span>
+                    <span class="tab-label">加入购物车</span>
+                </a>
+                <a class="tab-item external add-cart" href="#">
+                    <span class="icon icon-star"></span>
+                    <span class="tab-label">立即购买</span>
+                </a>
+            </nav>
+
+            <!-- 这里是页面内容区 -->
+            <div class="content">
+                <div class="swiper-container" data-space-between='10'>
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              <div class="good-info">
+                <span>${goods.goodsName}</span>
+                <span class="icon icon-right" ></span>
+             </div>
+               
+            <div class="price-div"><lable>￥</lable> <lable>${goods.shopPrice}</lable></div> 
+            <div class="choice-div"><lable>已选</lable> 
+            <% for(GoodsAttrModel in goodsAttr){%>
+            	<lable>${GoodsAttrModel.attrName}</lable>:<label>${GoodsAttrModel.attrValue}</label>&ensp;&ensp;
+            	<input type="hidden" name="goodsAttrId" value="${GoodsAttrModel.goodsAttrId}">
+            <%}%>
+            
+            
+             <span class="icon icon-right" ></span>
+            </div> 
+            
+            <div class="service">
+             <!--  <div class="choice-div">
+            
+              <lable>送至</lable> <lable>湖南 长沙 雨花区</lable>
+
+              </div>  -->
+              <div class="choice-div">
+              
+                <lable>服务</lable> <lable>由娃哈哈实体店提供</lable>
+
+              </div> 
+             <div class="choice-div">
+            
+              <lable>提示</lable> <lable>支持7天无理由退货</lable>
+
+            </div> 
+          </div>
+        
+            <div class="good-assess">
+               <div class="good-assess-tille">
+                <span>商品评价</span>
+                <span class="icon icon-right" ></span>
+              </div>
+              <div>
+                <span>好评度</span>
+                <span>89%</span>
+                <span>408人评论</span>
+              </div>
+            </div>
+             <div>
+               <div>
+                 <span>*****</span>
+                 <span>hfdsafdhsahu 2016-03-06 15:03:33</span>
+               </div>
+               <div>发货速度快,质量好,无色差,喜欢还会再来</div>
+               <div>
+                 <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt="农城微商" style="width: 3rem;">
+               </div>
+             </div>
+
+
+          </div>
+        
+
+ <div class="content-block">
+    <div class="tabs">
+      <div id="tab1" class="tab active">
+        <div class="content-block">
+          <p></p>
+        </div>
+      </div>
+      <div id="tab2" class="tab">
+        <div class="content-block">
+          <p></p>
+        </div>
+      </div>
+      <div id="tab3" class="tab">
+        <div class="content-block">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+        <!-- 其他的单个page内联页（如果有） -->
+       <!--  <div class="page">...</div> -->
+    </div>
+	</div>
+    <!-- popup, panel 等放在这里 -->
+    <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>这是一个侧栏</p>
+            <p></p>
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+    <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='${ctxPath}/js/touch.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+     <script type="text/javascript" charset="utf-8">
+        $(function(Zepto){
+           $.init();
+        });
+        $(function(Zepto){
+        	  $(".add-cart").on('tap',function(){
+        		  var goodsAttr = "";
+        		  $(".choice-div").find("input[name=goodsAttrId]").each(function(){
+        			  goodsAttr += $(this).val()+"-";
+        		  });
+        		  goodsAttr = goodsAttr.substring(0, goodsAttr.length-1);
+        		  var cart = {
+        			goodsId:"${goods.goodsId}",
+        			goodsSn:"${goods.goodsSn}",
+        			goodsName:"${goods.goodsName}",
+        			goodsPrice:"${goods.shopPrice}",
+        			goodsAttr:goodsAttr,
+        			isGift:"0"
+        		  }
+        		  $.ajax({
+        			  url:"${ctxPath}/cart/addCart",
+        			  method:'POST',
+        			  dataType:"json",
+        			  data:cart,
+        			  success:function(response){
+        				if(response.status == "error"){
+                      		alert("系统异常");
+                      		return ;
+                      	}else{
+                      		alert("操作成功");//后期处理
+                      	}
+        			  }
+        		  });
+        	  });
+        	  
+        	  $(".toCart").on('tap',function(){
+        		  window.location.href = "${ctxPath}/cart/init";
+        	  });
+        	  
+        });
+    </script>
+  </body>
+</html>

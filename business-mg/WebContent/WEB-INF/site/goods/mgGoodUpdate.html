@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+      body{width: 97%;margin: 0 auto;padding: 0; }
+      
+       .content{ float: right;}
+       .content div:first-child{background-color: white;}
+       .content textarea{ width: 100%;border: 0;}
+       .no-border{padding-left: .2rem;padding:0; }
+       .card-header .none-div{width: 4.8rem;height: 4rem;line-height: 4rem;text-align: center;border: 1px dashed #ccc;font-size: 1.2rem;position: relative;}
+       .none-div #adId{width: 4.8rem;height: 4rem;line-height: 4rem; overflow: hidden;position: absolute; right: 0;top: 0;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+       .no-border label{margin-right: 54%;}
+       .no-border .adTisiDiv{color: #ccc; text-align: center;}
+       .list-block .item-content{padding: 0;}
+       .good-img{ width:5rem;height: 4.9rem;margin-right: .2rem;}
+       .div-detail-img{width: 100%;overflow: hidden;background: white;}
+       .button.button-fill.button-big {height: 1.8rem;line-height: 1.8rem;}
+      
+    </style>
+  </head>
+  <body>
+    <div class="page" >
+      <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left" href="javascript:history.go(-1)" data-transition='slide-out'>
+          取消
+        </a>
+        <h1 class="title">商品明细</h1>
+        <a class="button button-link button-nav pull-right"  href="/demos/card" data-transition='slide-out'>
+          保存
+        </a>
+        
+      </header>
+ 
+      <div class="content" >
+        <!-- 这里是页面内容区 -->
+        <div>
+         <textarea placeholder="商品名称"  >${good.goodsName} </textarea>
+           <div valign="bottom" class="card-header color-white no-border" style="display: inline-block;">
+           <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" alt="加载失败" class="width-100"> 
+          </div> 
+        </div>
+
+        <div class="list-block" style="margin: .50rem 0;">
+        <ul>
+          <li class="item-content item-link open-panel">
+            <div class="item-media"><i class="icon icon-f7"></i></div>
+            <div class="item-inner">
+              <div class="item-title ">添加商品型号</div>
+              <!-- <div class="item-after"></div> -->
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">库存</div>
+                <div class="item-input">
+                  <input type="text"  placeholder="货物库存量" value="${good.goodsNumber}">
+                </div>
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name non-padding" ></i></div>
+              <div class="item-inner">
+                <div class="item-title label">价格￥</div>
+                <div class="item-input">
+                  <input type="text"  placeholder="销售价格" value="${good.shopPrice}">
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+        </div>
+        <div class="div-detail-img">
+           <div valign="bottom" class="card-header color-white no-border" style="padding:0; display: inline-block;justify-content: flex-start;">
+           <!-- <img src="C:\fakepath\juhua.jpg" alt="加载失败" class="width-100"> -->
+           <div class="none-div" style="">+
+           <input type="file" placeholder="添加分类广告" id="adId"     onchange="readFile(this,'typeDatailImg')" />
+           </div>
+           <div class="adTisiDiv" >添加商品详情图</div> 
+          </div>
+        </div>
+        <div class="content-block" style="margin: 0.75rem 0;padding:0;">
+          <div class="row" style="background-color: transparent">
+          	<%if(good.isOnSale == '1'){%>
+          		<div class="col-50"><a href="#" class="button button-big button-fill button-danger">下架</a></div>
+          	<%}else{%>
+          		<div class="col-50"><a href="#" class="button button-big button-fill button-danger">上架</a></div>
+          	<%}%>
+            
+            <div class="col-50"><a href="#" class="button button-big button-fill button-success">删除</a></div>
+          </div>
+        </div>
+    </div>
+    </div>
+   <div class="panel-overlay"></div>
+  <!-- Left Panel with Reveal effect -->
+  <div class="panel panel-right panel-reveal theme-dark" id='panel-left-demo'>
+    
+     <p><a href="#" class="close-panel">关闭</a></p>
+     <div class="searchbar row" >
+      <div class="search-input col-80">
+        <label class="icon icon-search" for="search"></label>
+        <input type="search" id='search' placeholder='输入商品型号...'/>
+      </div>
+      <a class="button button-fill button-primary col-20">搜索</a>
+    </div>
+      <div class="list-block">
+      <ul>
+        <!-- Text inputs -->
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">商品型号</div>
+              <div class="item-input">
+                <input type="text" placeholder="型号">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">属性名称</div>
+              <div class="item-input">
+                <input type="text" placeholder="如：颜色">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">属性值</div>
+              <div class="item-input">
+                <input type="text" placeholder="如：红色">
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      
+    
+    
+  </div>
+     
+      <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+      <script type="text/javascript" src='${ctxPath}/js/jquery.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='${ctxPath}/js/touch.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='${ctxPath}/js/ajaxfileupload.js' charset='utf-8'></script>
+      <script type="text/javascript" charset="utf-8">
+     /*  var goodsInfo = "";
+           //AngularJS 
+        var app = angular.module("contentApp",[]);
+        app.controller('customersCtrl',function($scope){
+           $scope.submit = function(){
+            goodsInfo = {
+             "goodsName":$scope.goodsName,
+             "goodsTypeId":$scope.goodsTypeId,
+             "goodsAttr":$scope.goodsAttr,
+             "goodsNumber":$scope.goodsNumber,
+             "shopPrice":$scope.shopPrice
+            }
+           
+            var  goodImg = $(".goodImg");
+            var fileId = [];
+            for(var i=0;i<goodImg.length;i++){
+                fileId[i] = goodImg[i].attr("id");
+            }
+              $.ajaxFileUpload
+                (
+                    {
+                        url : '../mgGoods/addgoods',
+                        secureuri:false,
+                        fileElementId:fileId,
+                        type:"post",
+                        dataType: 'json',
+                        data:goodsInfo,
+                        success: function (data)
+                        {
+                            if(data.status == "success"){
+                                 alert("添加成功 后续弹出3秒透明div");
+                            }
+                        },
+                        error: function (data, status, e)
+                        {
+                            $.alert('上传出错! 请联系管理员');
+                        }
+                    }
+                );
+           }
+            
+        }); */
+        
+        $(function(Zepto){
+        	var isOnSale = "${good.isOnSale}";
+        	if(isOnSale == '1')
+        		isOnSale = 0;
+        	else
+        		isOnSale = 1;
+       	  $(".button-danger").on('tap',function(){
+       		  $.ajax({
+       			  url:"${ctxPath}/mgGoods/batechGoods",
+       			  method:'POST',
+       			  dataType:"json",
+       			  data:{"isOnSale":isOnSale,"goodsId":"${good.goodsId}"},
+       			  success:function(response){
+       				  if(response.status == "error"){
+                     		alert("系统异常");
+                     		return ;
+                     	}else{
+                     		alert("操作成功");//后期处理
+                     		window.location.reload();
+                     	}
+       			  }
+       		  });
+       		  
+       	  });
+       	  
+       	  $(".button-success").on('tap',function(){
+       		 window.location.href="../mgGoods/detGoods/${good.goodsId}";
+       	  });
+       	  
+       	  
+       });
+
+
+        function readFile($this,type){
+              var file =$($this)[0].files[0]; 
+             
+              if(!/image\/\w+/.test(file.type)){ 
+                  alert("文件必须为图片！"); 
+                  return false; 
+              } 
+              var reader = new FileReader(); 
+              reader.readAsDataURL(file); 
+              reader.onload = function(e){ 
+                var time =  new Date().getTime();
+                  $($this).parent().parent().before('<img src="'+this.result+'" alt="" class="good-img" /><input type="file" name='+type+' id='+time+' class="goodImg" style= "display:none;">' );
+               
+              } 
+          } 
+    </script>
+  </body>
+</html>

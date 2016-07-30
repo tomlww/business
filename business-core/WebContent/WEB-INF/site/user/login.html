@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta name="flexible" content="initial-dpr=2,maximum-dpr=3" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<title>农城微商,而且模型进行中</title>
+	<link rel="stylesheet" href="../css/myCommon.css" />
+	<style>
+		
+		/* .icon {
+		    font-family: "iconfont-sm" !important;
+		    font-style: normal;
+		    display: inline-block;
+		    vertical-align: middle;
+		    background-size: 100% auto;
+		    background-position: center;
+		    -webkit-font-smoothing: antialiased;
+		    -webkit-text-stroke-width: 0.2px;
+		    -moz-osx-font-smoothing: grayscale;
+		} */
+
+		
+		.bg-border{
+			width:100%;
+			padding:0;
+			margin:0;
+			border-top:1px solid #ccc;
+			border-bottom:1px solid #ccc;
+			background:white;
+
+			padding-right: 0.75rem;
+		    position: relative;
+		    
+		    padding-top: 0.4rem;
+		    padding-bottom: 0.35rem;
+		    line-height:2rem;
+		    min-height: 2.2rem;
+
+		    overflow: hidden;
+		    /* box-sizing: border-box;
+		    display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    -webkit-box-flex: 1;
+		    -ms-flex: 1; */
+    /* -webkit-box-pack: justify; */
+    /* -webkit-justify-content: space-between; */
+    /* justify-content: space-between; */
+    /* -webkit-box-align: center; */
+    /* -webkit-align-items: center; */
+    /* align-items: center; */
+
+		}
+		.line-bottom:after	{
+			content: '';
+		    position: absolute;
+		    /* left: 0; */
+		   /*  bottom: 0; */
+		    right: auto;
+		    top: auto;
+		    height: 1px;
+		    width: 100%;
+		    background-color: #e7e7e7;
+		    display: block;
+		    z-index: 15;
+		    -webkit-transform-origin: 50% 100%;
+		    transform-origin: 50% 100%;
+		}
+		.pd-lf5{
+			padding-left:.5rem;
+		}
+		.but{
+			height: 2rem;
+		    width: 100%;
+		    margin: 1rem 0 1rem 0rem;
+		}
+
+		.bottom-div{
+			position: absolute;
+		    width: 100%;
+		    height: 3rem;
+		    
+		    bottom: 0;
+		    background: white;
+		    z-index: 9;
+		}
+		.ct-line{
+			 width: .1rem;
+		    background: #999;
+		    height: 1.5rem;
+		    margin: 4px 0px 4px 0px;
+		}
+		.justify-content{
+			-webkit-box-pack: justify;
+		    -webkit-justify-content: space-between;
+		    justify-content: space-between;
+		}
+		.item-media{
+			display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    -webkit-flex-shrink: 0;
+		    -ms-flex: 0 0 auto;
+		    -webkit-flex-shrink: 0;
+		    flex-shrink: 0;
+		    -webkit-box-lines: single;
+		    -moz-box-lines: single;
+		    -webkit-flex-wrap: nowrap;
+		    flex-wrap: nowrap;
+		    box-sizing: border-box;
+		   /*  -webkit-box-align: center;
+		   -webkit-align-items: center;
+		   align-items: center; */
+		   /*  padding-top: 0.35rem; */
+		   /*  padding-bottom: 0.4rem; */
+		}
+		
+		.init-but{
+			background: #DDDDDD;
+    		color: #666;
+		}
+		.action-but{
+			background:;
+		}
+		
+	</style>
+</head>
+<body>
+	<header class="bar bar-nav">
+    <a class="icon icon-me pull-left open-panel c9">取消</a>
+    <h1 class="title">登录</h1>
+  </header>
+  <div>
+  	<img src="../images/ygx.jpg" alt="登录图片" class="h10rem">	
+  </div>
+  <div class="bg-border">
+  	<div class="content-div h3rem wrap justify-content">
+  		<div class=" item-media"><lable class="c696969">账号:</lable></div>
+  		<div class="wth100 line-bottom">
+	  		<input type="text" name="userName" id="userName" class="brd0 pd-lf5" Placeholder="请输入用户名" />
+	  	</div>	
+  	</div>
+
+  	<div class="content-div  h3rem wrap justify-content">
+  		<div class=" item-media"><lable class="c696969">密码:</lable></div>
+  		<div class="wth100 line-bottom">
+  			<input type="text" name="pws" id="pws" class="brd0 pd-lf5" Placeholder="请输入密码" />
+  		</div>
+  	</div>
+  </div>
+  <div class="content-div">
+	 <!--  <div class="content-div"> -->
+	  		<input type="button" name="button" id="subBut" disabled="disabled" class="but brd0 bd-rd5px init-but" value="登 录">
+	  <!-- </div> -->
+  	  <div class="ft-size5">
+  	  	<a href="#">快速注册</a>
+  	  	<a href="#" class="fl-rig">忘记密码</a>
+  	  </div>
+
+  </div>
+
+  <div id="error">
+  	<label class="error-lable">错误信息错误信息错误信息错误信息错误信息</label>
+  </div>
+  <div class="flex-center bottom-div ta-ct">
+
+  	<div class="wth49">
+  		微信登录
+  	</div>
+  	<div class="ct-line"></div>
+  	<div class="wth49">QQ登录</div>
+  </div>
+  <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+  <script>
+
+  	$(function(Zepto){
+  		$("#userName").bind('keyup',function(){
+
+  			var pws = $("#pws").val();
+  			if(isNotNull($(this).val()) && isNotNull(pws)){
+  				$("#subBut").removeClass("init-but");
+  				$("#subBut").addClass("bkg-color");
+  				$("#subBut").addClass("color-white");
+  				$("#subBut").removeAttr('disabled');
+  			}else{
+  				$("#subBut").attr('disabled','disabled');
+  				$("#subBut").addClass("init-but");
+  			}
+  		});
+  		$("#pws").bind('keyup',function(){
+  			var userName = $("#userName").val();
+  			if(isNotNull($(this).val()) && isNotNull(userName)){
+  				$("#subBut").removeClass("init-but");
+  				$("#subBut").addClass("bkg-color");
+  				$("#subBut").addClass("color-white");
+  				$("#subBut").removeAttr('disabled');
+  			}else{
+  				$("#subBut").attr('disabled','disabled');
+  				$("#subBut").addClass("init-but");
+  			}
+  		});
+
+  		 $("#subBut").on('click',function(){
+  			 var user = {
+  				userCode:$("#userName").val(),
+  				password:$("#pws").val()	
+  			 }
+  			$.ajax({
+  			  type: 'post',
+  			  url: '${ctxPath}/user/login',
+  			  data: user,
+  			  dataType: 'json',
+  			  timeout: 300,
+  			  context: $('body'),
+  			  success: function(data){
+  			    if(data.status == "fail"){
+  			    	showError("用户名或者密码错误!");
+  			    }else{
+  			    	window.location.href= "${ctxPath}/goods/init";
+  			    }
+  			  },
+  			  error: function(xhr, type){
+  				showError("系统异常,请联系客服");
+  			  }
+  			})
+  		 	
+		});
+  	});
+  	function showError(s){
+  		$(".error-lable").html(s);
+  		$("#error").show(); 
+		$("#error").removeClass("from-below"); 
+		setTimeout(function(){$("#error").addClass("effeckt-show");},300); 
+		setTimeout(function(){
+			$("#error").removeClass("effeckt-show"); 
+			$("#error").addClass("from-below"); 
+		},2000); 
+  	}
+  	
+  	function isNotNull(s){
+  		s = s.replace(/\s/g, '');
+		if(s == "")
+			return false;
+		else
+			return true;
+  	}
+  		var doc = window.document
+	    var metaEl = doc.querySelector('meta[name="viewport"]');
+		var flexibleEl = doc.querySelector('meta[name="flexible"]');
+		var dpr = 0;
+		var scale = 0;			//缩放比例
+		//在meta标签中，已经有了viewport，则使用已有的viewport,并根据meta标签，对dpr进行设置
+		if (metaEl) {
+			console.log('将根据已有的meta标签来设置缩放比例');
+			var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+			if (match) {
+				scale = parseFloat(match[1]);
+				dpr = parseInt(1 / scale);
+			}
+		//如果在meta标签中，我们手动配置了flexible，则使用里面的内容
+		} else if (flexibleEl) {
+			var content = flexibleEl.getAttribute('content');
+			if (content) {
+				var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+				var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+				if (initialDpr) {
+	    			dpr = parseFloat(initialDpr[1]);
+	    			scale = parseFloat((1 / dpr).toFixed(2));    
+				}
+			if (maximumDpr) {
+				dpr = parseFloat(maximumDpr[1]);
+				scale = parseFloat((1 / dpr).toFixed(2));
+				}
+			}
+		}
+
+
+		if (!dpr && !scale) {
+			//devicePixelRatio这个属性是可以获取到设备的dpr的
+			var devicePixelRatio = win.devicePixelRatio;
+			//判断dpr是否为整数
+			var isRegularDpr = devicePixelRatio.toString().match(/^[1-9]\d*$/g)
+			if (isRegularDpr) {
+			// 对于是整数的dpr，对dpr进行操作
+		 	if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+		    	dpr = 3;
+			} else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+		    	dpr = 2;
+			} else {
+		    	dpr = 1;
+			}
+		} else {
+			// 对于其他的dpr，人采用dpr为1的方案
+			dpr = 1;
+			}
+			scale = 1 / dpr;
+		}	
+  </script>
+</body>
+</html>

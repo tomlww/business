@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+      body{width: 97%;margin: 0 auto;padding: 0; }
+      
+       .content{ float: right;}
+       .content div:first-child{background-color: white;}
+       .content textarea{ width: 100%;border: 0;}
+       .no-border{padding-left: .2rem;padding:0; }
+       .card-header .none-div{width: 4.8rem;height: 4rem;line-height: 4rem;text-align: center;border: 1px dashed #ccc;font-size: 1.2rem;position: relative;}
+       .none-div #adId{width: 4.8rem;height: 4rem;line-height: 4rem; overflow: hidden;position: absolute; right: 0;top: 0;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+       .no-border label{margin-right: 54%;}
+       .no-border .adTisiDiv{color: #ccc; text-align: center;}
+       .list-block .item-content{padding: 0;}
+       .good-img{ width:5rem;height: 4.9rem;margin-right: .2rem;}
+    </style>
+  </head>
+  <body>
+    <div class="page" ng-app="contentApp" ng-controller="customersCtrl">
+      <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left" href="/demos/card" data-transition='slide-out'>
+          取消
+        </a>
+        <h1 class="title">商品明细</h1>
+        <a class="button button-link button-nav pull-right" ng-click="submit()" href="javascript:void(0);" data-transition='slide-out'>
+          添加
+        </a>
+        
+      </header>
+   
+      <div class="content" >
+        <!-- 这里是页面内容区 -->
+        <div>
+         <textarea placeholder="商品名称" ng-model="goodsName" ></textarea>
+           <div valign="bottom" class="card-header color-white no-border" style="display: inline-block;">
+             <!-- <img src="C:\fakepath\juhua.jpg" alt="加载失败" class="width-100"> -->
+             <div class="none-div">+
+             <input type="file" placeholder="添加分类广告" id="adId"     onchange="readFile(this,'typeGoodimg')" >
+             </div>
+             <div class="adTisiDiv">添加商品图</div> 
+          </div> 
+
+        </div>
+
+        <div class="list-block" style="margin: .50rem 0;">
+        <ul>
+          <!-- Text inputs -->
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">商品型号</div>
+                <div class="item-input">
+                  <input type="text" ng-model="goodsTypeId" value=""  placeholder="同一个型号有多个颜色等属性">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">商品属性</div>
+                <div class="item-input">
+                  <input type="text" ng-model="goodsAttr" placeholder="如尺寸 这块后期修改添加型号 属性名称 值的模式">
+                </div>
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">库存</div>
+                <div class="item-input">
+                  <input type="text" ng-model="goodsNumber" placeholder="货物库存量">
+                </div>
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name non-padding" ></i></div>
+              <div class="item-inner">
+                <div class="item-title label">价格￥</div>
+                <div class="item-input">
+                  <input type="text" ng-model="shopPrice" placeholder="销售价格">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        </div>
+
+       <div valign="bottom" class="card-header color-white no-border" style="padding:0; display: inline-block;justify-content: flex-start;">
+           <!-- <img src="C:\fakepath\juhua.jpg" alt="加载失败" class="width-100"> -->
+           <div class="none-div" style="">+
+           <input type="file" placeholder="添加分类广告" id="adId"     onchange="readFile(this,'typeDatailImg')" />
+           </div>
+           <div class="adTisiDiv" >添加商品详情图</div> 
+        </div>
+
+
+
+
+    </div>
+    
+      <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+      <script type="text/javascript" src='../js/jquery.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='../js/touch.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='../js/ajaxfileupload.js' charset='utf-8'></script>
+      <script type="text/javascript" charset="utf-8">
+      var goodsInfo = "";
+           //AngularJS 
+        var app = angular.module("contentApp",[]);
+        app.controller('customersCtrl',function($scope){
+           $scope.submit = function(){
+            goodsInfo = {
+             "goodsName":$scope.goodsName,
+            /*  "goodsTypeId":$scope.goodsTypeId,
+             "goodsAttr":$scope.goodsAttr, */
+             "catId":"${catId}",
+             "goodsNumber":$scope.goodsNumber,
+             "shopPrice":$scope.shopPrice
+            }
+           
+            var  goodImg = $(".goodImg");
+            var fileId = [];
+            for(var i=0;i<goodImg.length;i++){
+                fileId[i] = goodImg[i].id;
+            }
+              $.ajaxFileUpload
+                (
+                    {
+                        url : '../mgGoods/addgoods',
+                        secureuri:false,
+                        fileElementId:fileId,
+                        type:"post",
+                        dataType: 'json',
+                        data:goodsInfo,
+                        success: function (data)
+                        {
+                            if(data.status == "success"){
+                                 alert("添加成功 后续弹出3秒透明div");
+                            }
+                        },
+                        error: function (data, status, e)
+                        {
+                            $.alert('上传出错! 请联系管理员');
+                        }
+                    }
+                );
+           }
+            
+        });
+        $(function(Zepto){
+         /* $(".pull-right").on('tap',function(){
+
+          });*/
+         
+        });
+
+        function readFile($this,type){
+              var file =$($this)[0].files[0]; 
+             
+              if(!/image\/\w+/.test(file.type)){ 
+                  alert("文件必须为图片！"); 
+                  return false; 
+              } 
+              var reader = new FileReader(); 
+              reader.readAsDataURL(file); 
+              reader.onload = function(e){ 
+                var time =  new Date().getTime();
+                  $($this).parent().parent().before('<img src="'+this.result+'" alt="" class="good-img" /><input type="file" name='+type+' id='+time+' value="'+this.result+'" class="goodImg" style= "display:none;">' );
+               
+              } 
+          } 
+    </script>
+  </body>
+</html>

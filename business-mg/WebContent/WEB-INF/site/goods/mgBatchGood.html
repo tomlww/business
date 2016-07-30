@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+      body{width: 97%;margin: 0 auto;padding: 0; }
+      .list-block .item-content {padding-left: .20rem;}
+      .list-block.media-list .item-media {padding-top: .45rem;padding-bottom: .5rem;padding-right: .20rem;}
+      .list-block .item-inner:after {background-color: transparent;}
+      .media-list ul li{ border-bottom: .05rem solid #ccc;}
+      
+      .width-100{width: 100%;height: 50px;}
+      .list-block .item-content {padding-left: .20rem;}
+      .list-block.media-list .item-media {padding-top: .45rem;padding-bottom: .5rem;padding-right: .20rem;}
+      .list-block .item-inner:after {background-color: transparent;}
+      .media-list ul li{ border-bottom: .05rem solid #ccc;}
+      .theme-dark .card {
+          background: white;}
+       .card-content-inner{padding:0rem;padding-left: 0.75rem;padding-top: 0.7rem;margin-left: .89rem;}
+        .card-content-inner input{  width: 100%;border: 0px;border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+        .card-header .none-div{width: 2.5rem;height: 100%;/* border: 1px solid red; */text-align: center;border: 1px dashed #ccc;font-size: 1.2rem;position: relative;}
+        .none-div .adImg{width: 2.5rem;height: 100%; overflow: hidden;position: absolute; right: 0;top: 0;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+        .no-border label{margin-right: 54%;}
+        .no-border .adTisiDiv{color: #ccc;}
+        .closeSpan{
+            width: 1rem;
+            height: 1rem;
+            line-height: .9rem;
+            text-align: center;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            margin-left: .1rem;
+            color: #ccc;
+            border: 1px solid #ccc;
+            /* display: none; */
+            }
+        .card-footer, .card-header{
+            padding-right: .2rem;
+        }
+       .button.button-fill.button-big {height: 1.8rem;line-height: 1.8rem;}
+       #popup{
+	     position: absolute;
+	    display: none;
+	    z-index: 3000;
+	    background-color: #FFF;
+	    bottom: 0;
+	    height: 45%;
+	    width: 100%;
+	    overflow:auto;
+	 }
+	#embedding{
+	  position: absolute; background-color: #36F; top: 94px;height:56px; width:217px;line-height:56px;text-align:center;
+	}
+    </style>
+  </head>
+  <body ng-app="pageApp">
+
+
+     <div class="page"  ng-Controller="pageController">
+      <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left" href="javascript:history.go(-1)" data-transition='slide-out'>
+          返回
+        </a>
+        <h1 class="title">批量管理</h1>
+        <a class="icon icon-me pull-right open-panel"></a>
+      </header>
+    <nav class="bar bar-tab">
+      <%if("0" == goods.isOnSale){%>
+        <a class="tab-item active" ng-click="outGoods('1')" >
+          <span class="icon icon-home"></span>
+           <span class="tab-label">上架</span>
+        </a>
+        <%}else{%>
+         	<a class="tab-item active" ng-click="outGoods('0')" >
+	          <span class="icon icon-home"></span>
+	           <span class="tab-label">下架</span>
+	        </a>
+          <%}%>
+        <a class="tab-item" id="catTo">
+          <span class="icon icon-settings"></span>
+          <span class="tab-label">分类至</span>
+        </a>
+      </nav>
+      <div class="content">
+        <!-- 这里是页面内容区 -->
+        <div class="list-block media-list">
+        <ul>
+          <li ng-repeat="x in result">
+          <label class="label-checkbox item-content">
+            <input type="checkbox" name="my-checkbox" value="{{x.goodsId}}">
+            <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+             <div class="item-media" ng-click="detailGood(x)">
+             <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'>
+             </div>
+              <div class="item-inner" ng-click="detailGood(x)">
+                <div class="item-title-row">
+                  <div class="item-title">{{x.goodsName}}</div>
+                  <div class="item-after">{{x.shopPrice}}</div>
+                </div>
+                <div class="item-subtitle">{{x.goodsNumber}}</div>
+                <div class="item-text">商品描述...</div>
+              </div>
+            </label>
+          </li>
+        </ul>
+      </div>
+    
+    
+    </div>
+    </div>
+	
+	<div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-right panel-reveal theme-dark" id='panel-right-demo'>
+      <div class="card">
+       <div class="card-content">
+         <div class="card-content-inner">
+           <p><input type="text" name="catName" value="" placeholder="分类名称"></p>
+         </div>
+       </div>
+         <div valign="bottom" class="card-header color-white no-border" style="display:box;display: inline-flex;">
+          <div class="none-div">+
+           <input type="file" name="file" placeholder="添加分类广告" id="file" class="adImg"  onchange="readFile(this)"/>
+            </div>
+           <div class="adTisiDiv">添加分类广告图</div> 
+          </div>
+         <div class="card-footer">
+         <a href="#" class="link close-panel" >取消</a>
+          <a href="javascript:void(0);" class="link button-fill">保存</a>
+          </div>
+      </div>
+    </div>
+	
+	<div id="loadingDiv" style="position:fixed;display:none;z-index:2000;top:0px;left:0px;width:100%;height:100%;background-color:#ccc;  opacity: 0.4;"></div>
+    <div id="popup"  ng-app="panelApp" ng-Controller="panelController">
+      
+	  <div class="card" ng-repeat="x in resultCategory">
+      <label class="label-checkbox item-content" style="float: left;">
+          <input type="radio" name="my-radio" value="{{x.catId}}">
+          <div class="item-media" style="margin-top: 1.4rem;margin-left: .2rem;"><i class="icon icon-form-checkbox"></i></div> 
+      </label>   
+      
+      <div sytle=" width: 90%;margin-left: .89rem;"> 
+       <!--  <div class="card-content"> -->
+          <div class="card-content-inner" sytle=" width: 90%;margin-left: .89rem; ">
+          <input type="text" name="catName" value="{{x.catName}}" placeholder="分类名称">
+          <!-- </div> -->
+        </div>
+          <div valign="bottom" class="card-header color-white no-border" style="display:box;display: inline-flex;">
+           <img src="..{{x.imgUrl}}" alt="" class="width-100 categoryImg" ng-click="ctgGoodList(x)" /><span class="closeSpan"  >x</span>
+       </div>
+      </div>
+    </div>
+    
+      <div class="content-block" style="margin: 0.75rem 0;padding:0;margin: auto; width: 92%;margin-bottom: .3rem;  position: fixed;z-index: 9992;bottom: 0;  margin-left: .5rem;">
+     	 <div id="addCategory"><a href="#" class="tab-item external active" >添加分类</a></div>
+          <div class="row" style="background-color: transparent">
+            <div class="col-50"><a href="#" class="button button-big button-fill button-danger">确定</a></div>
+            <div class="col-50"><a href="#" class="button button-big button-fill button-success">取消</a></div>
+          </div>
+      </div>
+	</div>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../js/touch.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+     <script type="text/javascript" charset="utf-8">
+     var app = angular.module('pageApp',[]);
+     app.controller('pageController', function($scope, $http, $location) {
+         var params = {"isOnSale": "${goods.isOnSale}"};
+    	 load(params);
+         function load(params){
+        	 $http({
+           		url:'../mgGoods/listGoods',
+           		method:'POST',
+           		params: params
+           		}).success(function(response) {
+           			$(".tab").removeClass("active");
+               		$("#tab1").addClass("active");
+           			if(response.status == "error"){
+                  		alert("系统异常");
+                  		return ;
+                  	}
+                   	if(response.result.length<=0){
+                   		$(".media-list").find("#addgoods").empty();
+                   		$(".media-list").append("<div id='addgoods'>添加商品</div>")
+                   	}else{
+                   		$scope.result = response.result;
+                   	}
+                 });
+        	 
+        	
+          	
+         }
+         $scope.outGoods = function(type){
+        	var listGoods = {goods:[]};
+        	var checkBox =  $("input[name=my-checkbox]");
+        	checkBox.each(function(index,element){
+        		if(element.checked){
+        			var goodsObj = {
+        					"goodsId":element.value,
+        					"isOnSale":type
+        					}
+        			listGoods.goods.push(goodsObj);
+        		}
+        	});
+        	 var listGoodsString = JSON.stringify(listGoods);
+        	$http({
+           		url:'../mgGoods/batchOutGoods',
+           		method:'POST',
+           		params: {"listGoods":listGoodsString},
+           		}).success(function(response) {
+           			if(response.status == "error"){
+                  		alert("系统异常");
+                  		return ;
+                  	}else{
+                  		//$(".media-list").empty();
+                  		alert("操作成功");//后期处理
+                  		window.location.reload();
+                  		/* if("1" == "${goods.isOnSale}"){
+                  			$(".media-list").append("<div>暂无已上架的商品</div>");
+                  		}else{
+                  			$(".media-list").append("<div>暂无已下架的商品</div>");
+                  		} */
+                  	}
+                 });
+         }
+         $scope.detailGood = function(x){
+        	 window.location.href = "../mgGoods/getGood/"+x.goodsId;
+         }
+     });
+     app.controller('panelController', function($scope, $http) {
+    	 loud();
+    	 function loud(){
+    		 $http.post("../mgGoods/getCategoryList")
+             .success(function(response) {
+             	if(response.result.length<=0){
+             		$("#panel-right-demo").find("#addgoods").empty();
+            		$("#panel-right-demo").append("<div id='addgoods'>添加商品分类</div>");
+             	}else{
+             		$scope.resultCategory = response.result;
+             		/* var noInfoHtml = '<div id="addCategory"><a href="#" class="tab-item external active" >添加分类</a></div>';
+             		$("#popup").append(noInfoHtml); */
+             	}
+             }); 
+    	 }
+    	 
+     });
+        $(function(Zepto){
+        	 var listGoods = {goods:[]};
+        	  $("#catTo").on('tap',function(){
+        		  var checked = $("input[type=checkbox]");
+        		  var bl = false;
+        		  checked.each(function(){
+        			 if($(this).is(":checked")){
+        				 bl = true;
+        				 var goodsObj = {
+        						"goodsId":$(this).val()
+        				 }
+        			 } 
+        			 var goodsObj = {
+         					"goodsId":$(this).val()
+						}
+        			 listGoods.goods.push(goodsObj);
+        		  });
+        		  
+        		  if(!bl){
+        			  alert("请选择商品");
+        			  return ;
+        		  }else{
+        			  $('#loadingDiv').css('display','block');  
+        			  $('#popup').css('display','block');  
+            		 // $('#popup').slideDown();
+        			  //$.openPanel("#panel-right-demo");
+        		  }
+        		  
+        	  });
+        	  
+        	  $(".button-danger").on('tap',function(){
+        		  
+        		  var bl = false;
+        		  var radio =  $("input[name=my-radio]");
+        		  var catId = "";
+        		  radio.each(function(){
+        			  if($(this).is(":checked")){
+        				  bl = true;
+        				  catId = $(this).val();
+        			  }
+        		  })
+        		  if(!bl){
+        			  alert("请选择分类");
+        			  return ;
+        		  }
+        		  var listGoodsString = JSON.stringify(listGoods);
+        		  var outCatGoodsInfo = {"catId":catId,"listGoodsString":listGoodsString}
+        		  $.ajax({
+        			  url:"../mgGoods/toCatGoods",
+        			  method:'POST',
+        			  dataType:"json",
+        			  data:outCatGoodsInfo,
+        			  success:function(){
+        				  if(response.status == "error"){
+                      		alert("系统异常");
+                      		return ;
+                      	}else{
+                      		//$(".media-list").empty();
+                      		alert("操作成功");//后期处理
+                      		window.location.reload();
+                      		/* if("1" == "${goods.isOnSale}"){
+                      			$(".media-list").append("<div>暂无已上架的商品</div>");
+                      		}else{
+                      			$(".media-list").append("<div>暂无已下架的商品</div>");
+                      		} */
+                      	}
+        			  }
+        		  });
+        		 
+        		  /* $http({
+                 		url:'../mgGoods/toCatGoods',
+                 		method:'POST',
+                 		params: outCatGoodsInfo,
+                 		}).success(function(response) {
+                 			
+                       }); */
+        	  });
+        	  $("#loadingDiv,.button-success").on('tap',function(){
+        		  $('#loadingDiv').css('display','none');  
+        		  $('#popup').css('display','none');  
+        	  }); 
+        	  
+        	  $("#addCategory").on('tap',function(){
+        		  $.openPanel("#panel-right-demo");
+        		  $('#loadingDiv').css('display','none');  
+        		  $('#popup').css('display','none'); 
+        	  }); 
+        	    
+        });
+
+    </script>
+  </body>
+</html>

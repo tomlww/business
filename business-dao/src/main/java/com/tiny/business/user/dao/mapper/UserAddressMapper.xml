@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.user.dao.UserAddressMapper" >
+  <resultMap type="com.tiny.business.user.model.UserAddressModel" id="userAddressMap">
+      <id column="address_id" property="addressId"/>
+      <result column="user_id" property="userId"/>
+      <result column="consignee" property="consignee"/>
+      <result column="province" property="province"/>
+      <result column="city" property="city"/>
+      <result column="district" property="district"/>
+      <result column="address" property="address"/>
+      <result column="mobile" property="mobile"/>
+      <result column="is_checked" property="isChecked"/>
+  </resultMap>
+  <sql id="userAddress">
+     address_id,user_id,consignee,province,city,district,address,mobile,is_checked
+  </sql>
+  
+  <insert id="insertData"  parameterType="com.tiny.business.user.model.UserAddressModel" >
+     insert into user_address(user_id,consignee,province,city,district,address,mobile,is_checked,crate_time) 
+     values(#{userId},#{consignee},#{province},#{city},#{district},#{address},#{mobile},#{isChecked},now())
+  </insert>
+  
+   <select id="queryForList" parameterType="com.tiny.business.user.model.UserAddressModel" resultMap="userAddressMap">
+       select <include refid="userAddress"></include> from user_address a where a.user_id=#{userId} 
+   </select>
+   <select id="queryObject" parameterType="com.tiny.business.user.model.UserAddressModel" resultMap="userAddressMap">
+       select <include refid="userAddress"></include> from user_address a where a.user_id=#{userId} and a.address_id = #{addressId}
+   </select>
+  
+   <update id="updateData" parameterType="com.tiny.business.user.model.UserAddressModel">
+       update user_address 
+      <trim prefix="SET" suffixOverrides=",">
+           <if test="consignee!=null and consignee!=''">
+               consignee = #{consignee},
+           </if>
+           <if test="province !=null and province != ''">
+                province = #{province},
+           </if>
+           <if test="city !=null and city != ''">
+                city = #{city},
+           </if>
+           <if test="district !=null and district != ''">
+                district = #{district},
+           </if>
+           <if test="address !=null and address != ''">
+                address = #{address},
+           </if>
+           <if test="mobile !=null and mobile != ''">
+                mobile = #{mobile},
+           </if>
+           <if test="isChecked !=null and isChecked != ''">
+                isChecked = #{isChecked},
+           </if>
+      </trim>
+       where address_id = #{addressId}
+   </update>
+   
+   <delete id="deleteData" parameterType="com.tiny.business.user.model.UserAddressModel">
+       delete from user_address a where a.user_id=#{userId} and a.address_id = #{addressId}
+   </delete>
+</mapper>

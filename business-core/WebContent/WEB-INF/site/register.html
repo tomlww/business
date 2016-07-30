@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+  	<meta name="format-detection" content="telephone=no" />
+  	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+  	<meta HTTP-EQUIV="Expires" CONTENT="-1">
+  	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  	<meta name="apple-mobile-web-app-capable" content="yes"> 
+  	<meta name="screen-orientation" content="portrait">
+  	<meta name="x5-orientation" content="portrait">
+  	<meta name="x5-fullscreen" content="true">
+  	<meta name="360-fullscreen" content="true">
+  	<meta name="renderer" content="webkit">
+
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/font.css" />
+</head>
+<body>
+	
+	<section class="main mt40">
+	
+		<div class="item-wrap">
+			<div class="item-left">用户名</div>
+			<div class="item-right">
+					<input id="userCode" type="text"  placeholder="默认微信号" maxLength="30">	
+			</div>				
+		</div>	
+		<div class="item-wrap">
+			<div class="item-left">密码</div>
+			<div class="item-right">
+					<input id="password" type="password"  placeholder="请输入密码" >	
+			</div>				
+		</div>		
+		<div class="item-wrap">
+			<div class="item-left" >验证码</div>
+			<div class="item-right flex nbg">
+				<p  class="box flex-1"><input id="codeInp" type="tel" placeholder="6位数字" maxLength="6"></p>
+				<p class="btnCode" id="btnCode" >获取验证码</p>
+			</div>				
+		</div>
+		<div>
+			同意小武杂货店用户注册协议
+		</div>
+		<footer class="tc">
+			<div class="btn" id="btnNext">注册</div>
+		</footer>			
+	</section>
+	<div id="mask"></div>
+	
+
+	<script  src="../js/jquery.min.js"></script>
+	<script  src="../js/common.js"></script>
+	<script  src="../js/user/user.js"></script>
+	<script  src="../js/user/reg.js"></script>
+
+</body>
+
+</html>

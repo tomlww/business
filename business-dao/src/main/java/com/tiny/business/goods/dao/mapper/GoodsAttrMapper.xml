@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.goods.dao.GoodsAttrMapper" >
+  <resultMap type="com.tiny.business.goods.model.GoodsAttrModel" id="goodsAttrMap">
+      <id column="goods_attr_id" property="goodsAttrId" />
+      <result column="attr_value" property="attrValue"/>
+      <result column="attr_name" property="attrName"/>
+  </resultMap>
+    
+  <insert id="insertData" parameterType="com.tiny.business.goods.model.GoodsAttrModel" >
+      insert into goods_attr (goods_id,goods_sn,attr_name,attr_value)
+      values(#{goodsId},#{goodsSn},#{attrName},#{attrValue}) 
+  </insert>
+  
+  <select id="queryForList" parameterType="com.tiny.business.goods.model.GoodsAttrModel" resultMap="goodsAttrMap">
+      select a.goods_attr_id,a.attr_value,a.attr_name from goods_attr a where a.goods_sn = #{goodsSn} 
+      <if test="goodsId !=null and goodsId!=''">and a.goods_id = #{goodsId}</if>
+  </select>
+  
+</mapper>

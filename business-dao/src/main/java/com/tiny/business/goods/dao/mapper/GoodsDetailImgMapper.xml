@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.goods.dao.GoodsDetailImgMapper" >
+  <resultMap type="com.tiny.business.goods.model.GoodsDetailImgModel" id="goodsDetailImgMap">
+      <id     column="guid"  property="guid" />
+      <result column="goodsId" property="goods_id"/>
+      <result column="imgUrl" property="img_url"/>
+      <result column="thumbUrl" property="thumb_url"/>
+      <result column="imgOriginal" property="img_original"/>
+  </resultMap>
+  
+  <insert id="insertData" parameterType="com.tiny.business.goods.model.GoodsDetailImgModel" >
+      insert into goods_detail_img (goods_id,img_url,thumb_url,img_original)
+      values(#{goodsId},#{imgUrl},#{thumbUrl},#{imgOriginal}) 
+  </insert>
+  
+  <select id="queryForList" resultMap="goodsDetailImgMap" parameterType="string">
+      select img_url,thumb_url,img_original from goods_detail_img g
+      where g.goods_id = #{goodsId}
+  </select>
+  
+  <delete id="deleteData" parameterType="string">
+      delete goods_detail_img g where g.goods_id = #{goodsId}
+  </delete>
+  
+</mapper>

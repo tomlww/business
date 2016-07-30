@@ -1,0 +1,7 @@
+target/
+Temp\temp
+*.class
+*.jar
+*.name
+*.prefs
+*.classpath

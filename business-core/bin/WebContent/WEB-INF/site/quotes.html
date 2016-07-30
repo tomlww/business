@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请选择您爱车的具体型号</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/font.css" />
+    <link rel="stylesheet" href="../css/quotes.css" />
+    <style type="text/css">
+		.c1T4D9 { width: 822px; }
+		.c1T4D9 dd { width: 600px; }
+		.laymshade{ background-color: rgba(0,0,0, 0.07); position:fixed; width: 100%; height:100% ;left:0; top:0; z-index: 1;}
+		.layermmain{ margin: 0px auto; width: 94%;  display: table;font-family: Helvetica, arial, sans-serif;top: 20%;position: fixed; z-index: 2;left: 9%;}
+		.section{position: fixed;width: 94%;z-index: 20;background: white;border-radius: 6px 6px 6px 6px;}
+		.layermbtn{border-top: 1px solid #EBEBEB;}
+		.layermbtn span:first-child {height: 39px;background-color: #fff;border-radius: 0 0 0 5px;}
+		.layermbtn span {  line-height: 40px; position: relative;display: inline-block;width: 50%;text-align: center;font-size: 14px;cursor: pointer;border-radius: 0 5px 0 0;}
+		.errorInfo{width:80%;margin:auto;color:#ec6d65;font-size:0.8em;font-weight:bold;height: 28px;}
+		.section{width: 80%;}
+		.close{float: right;}
+	</style>
+</head>
+<body>
+
+   <div class="laymshade"></div>
+	<div class="layermmain" >
+		<div class="section" >
+			<div class="layermchild  layermanim" style="text-align: center;">
+				<h3 style="white;border-radius: 6px 6px 0px 0px;font-size:1.1em;font-weight:bold;background-color:#F7EADD;height:3em;line-height:3em;text-align: left;padding: 6px;">请填写车价
+				<span style="font-size:0.8em;color:#ec6d65">(单位：万元)</span>
+				<a class="close" data-dismiss="modal" style="width: 25px;height: 25px;">×</a>
+				</h3>
+				<button class="layermend" style="display:none"></button>
+				<div class="layermcont"><div style="text-align:center;" id="car_price">
+					<input id="price" placeholder="准确的价格有助于车险报价" type="number" style="border:1px solid #ccc;width:80%;margin-top:1em;margin-bottom:1em;line-height:2.5em;">
+					<div id="price_tips" ></div>
+				</div>
+			   </div>
+			<div class="layermbtn">
+				<span type="1" style="color:#ec6d65" id="priceSub">提交</span></div>
+			</div>
+		</div>
+	</div>
+
+
+<section class="main mt40">
+    <h3 style="font-size: 0.8em;font-weight:bold;background-color:#F7EADD;height:2em;line-height:2em;padding-left: 10px;border-radius: 5px 5px 0 0px;">请选择您的爱车具体型号</h3>
+    <ul style="background-color: white" class="priceUl">
+        <li class="car-model chosen" taxprice="8.68" price="7.9998">
+            <table style="width:100%;border-collapse:collapse;font-size:0.8em;">
+                <tbody>
+                    <tr>
+                        <td style="width:1.5em;text-align:center">
+                            <div class="switch"></div>
+                        </td>
+                        <td style="text-align:left">力帆(乘用车)X601.8L2011款 舒适型</td>
+                        <td style="width:7em;text-align:right">79998元</td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+        <li class="car-model" taxprice="8.68" price="8.4998">
+            <table style="width:100%;border-collapse:collapse;font-size:0.8em;">
+                <tbody>
+                <tr>
+                    <td style="width:1.5em;text-align:center">
+                        <div class="switch"></div>
+                    </td>
+                    <td style="text-align:left">力帆(乘用车)X601.8L2011款 豪华型</td>
+                    <td style="width:7em;text-align:right">84998元</td>
+                </tr>
+                </tbody>
+            </table>
+        </li>
+        <li class="car-model" taxprice="8.68" price="7.7998">
+            <table>
+                <tbody>
+                <tr>
+                    <td style="width:1.5em;text-align:center">
+                        <div class="switch"></div>
+                    </td>
+                    <td style="text-align:left">力帆(乘用车)力帆X601.8L2012款 发现版豪华型</td>
+                    <td style="width:7em;text-align:right">77998元</td>
+                </tr>
+                </tbody>
+            </table>
+        </li>
+        <li class="car-model" taxprice="8.68" price="7.2998">
+            <table>
+                <tbody>
+                <tr>
+                    <td style="width:1.5em;text-align:center">
+                        <div class="switch"></div>
+                    </td>
+                    <td style="text-align:left">力帆(乘用车)力帆X601.8L2012款 发现版舒适型</td>
+                    <td style="width:7em;text-align:right;">72998元</td>
+                </tr>
+                </tbody>
+            </table>
+        </li>
+    </ul>
+    <div class="layermbtn"><span type="0" class = "noValue">没有找到</span><span type="1" style="color:#ff6600;border-radius: 0 0px 5px 0;">提交</span></div>
+</section> 
+<!-- <div id="mask"></div> -->
+
+<script  src="../js/jquery.min.js"></script>
+<script  src="../js/common.js"></script>
+<script type="text/javascript">
+   $(function(){
+      var priceSubShow = {
+   		  init:function(){
+   			$(".laymshade").hide();
+   			$(".layermmain").hide();
+   			priceSubShow.loadData();
+   			priceSubShow.initClickCss();
+   		  },
+   		  priceShow:function(){
+   			  $(".laymshade").show();
+ 			  $(".layermmain").show();
+   		  },loadData:function(){
+   			$.ajax({
+  		      url :"../quote/quet.do",
+  		      type :"post",
+  		      dataType :"json",
+  		      success : function(result){
+  		      		//alert(eval("("+result+")"));
+  			    	if(result.status=="fail"){
+  			    	 alert(result.msger);
+  			    	}
+  			    	for(var i=0;i<result.list.length;i++){
+			    		$(".priceUl").append(
+		  			    		'<li class="car-model" taxprice="8.68" price="'+result.list[i].productPrice+'">'+
+		  			             '<table>'+
+		  			               '<tbody>'+
+		  			                  '<tr>'+
+		  			                     '<td style="width:1.5em;text-align:center">' +
+		  			                          '<div class="switch"></div>'+
+		  			                      '</td>'+
+		  			                      '<td style="text-align:left">力帆(乘用车)力帆X601.8L2012款 发现版舒适型</td>'+
+		  			                      '<td style="width:7em;text-align:right;">'+result.list[i].productPrice+'元</td>'+
+		  			                  '</tr>'+
+		  			                 '</tbody>'+
+		  			              '</table>'+
+		  			          '</li>'
+		  			    );
+  			    	}
+  			    	priceSubShow.initClickCss();
+  			    	
+  			    },
+				error: function (data, status, e)
+				{
+					alert(status+"111111111133"+e);
+					//alertDiv.create("alertDiv", "网络超时，请稍后再试");
+				}
+  		  	});
+   		  },initClickCss:function(){
+   		  	 $("ul li").each(function(){
+		          $(this).click(function() {
+		              $(this).addClass("chosen").siblings("li").removeClass("chosen");
+		          });
+		      });
+   		  }
+      };
+     
+      $(".noValue").click(function(){
+    	  priceSubShow.priceShow();
+      });
+      
+      $("#priceSub").click(function(){
+    	  if(!isNotEmpty($("#price").val())){
+    		  $("#price_tips").addClass("errorInfo");
+    		  $("#price_tips").html("报价不能为空");
+    		  return ;
+    	  }else if(!isPirce($("#price").val())){
+    		  $("#price_tips").addClass("errorInfo");
+    		  $("#price_tips").html("输入的价格有误");
+    		  return ;
+    	  }else{
+    		  $("#price_tips").removeClass("errorInfo");
+    		  $("#price_tips").html("&nbsp;");
+    	  }
+    	  $.ajax({
+		      url : "../quote/add.do",
+		      type : "post",
+		      dataType : "json",
+		      data:{"productPrice":$("#price").val()},
+		      success :function(result){
+		    	  alert(1);
+		    	  /* 
+		    	  alert(result);
+			    	if(result.status=="fail"){
+			    	 alert(result.msger);
+			    	}else{
+			    		priceSubShow.init();
+			    		priceSubShow.loadData();
+			    	} */
+			    },
+				error: function (data, status, e)
+				{
+					alert("1111111111");
+					//alertDiv.create("alertDiv", "网络超时，请稍后再试");
+				}
+		  });
+      });
+      
+      
+     
+      priceSubShow.init();
+    });
+</script>
+</body>
+</html>

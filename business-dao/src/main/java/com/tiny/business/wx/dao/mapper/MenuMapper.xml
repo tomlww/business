@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.wx.dao.MenuMapper" >
+    
+ <select id="listWxMenus"  parameterType="java.lang.String" resultType="com.tiny.business.wx.model.AccountMenu">
+		SELECT * FROM t_wxcms_account_menu 
+		where gid = #{gid}
+		ORDER BY parentId, sort
+	</select>
+   
+</mapper>

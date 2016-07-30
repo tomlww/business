@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.goods.dao.CategoryMapper" >
+  <resultMap type="com.tiny.business.goods.model.CategoryModel" id="categoryMap">
+      <id     column="cat_id"  property="catId" />
+      <result column="cat_name" property="catName"/>
+      <result column="parent_id" property="parentId"/>
+      <result column="sort_order" property="sortOrder"/>
+      <result column="suppliers_Id" property="suppliersId"/>
+      <result column="img_url" property="imgUrl"/>
+  </resultMap>
+  
+  <insert id="insertData" parameterType="com.tiny.business.goods.model.CategoryModel" >
+      insert into category (cat_id,cat_name,parent_id,sort_order,suppliers_Id,img_url)
+      values(#{catId},#{catName},#{parentId},#{sortOrder},#{suppliersId},#{imgUrl}) 
+  </insert>
+  
+  <select id="queryForList" resultMap="categoryMap" parameterType="string">
+      select c.cat_id,c.cat_name, c.sort_order,c.img_url from category c
+      where c.suppliers_Id = #{suppliersId} and c.is_show='1'
+  </select>
+  
+  <update id="deleteData" parameterType="com.tiny.business.goods.model.CategoryModel">
+      update category set is_show='0' where cat_id = #{catId}
+  </update>
+   
+  <update id="updateData" parameterType="com.tiny.business.goods.model.CategoryModel">
+      update category set cat_name = #{catName} ,img_url = #{imgUrl} where cat_id = #{catId}
+  </update>
+</mapper>

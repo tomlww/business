@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+      body{width: 97%;margin: 0 auto;padding: 0; }
+       .content{ float: right;}
+       .content div:first-child{background-color: white;}
+       .content textarea{ width: 100%;border: 0;}
+       .no-border{padding-left: .2rem;padding:0; }
+       .card-header .none-div{width: 4.8rem;height: 4rem;line-height: 4rem;text-align: center;border: 1px dashed #ccc;font-size: 1.2rem;position: relative;}
+       .none-div #adId{width: 4.8rem;height: 4rem;line-height: 4rem; overflow: hidden;position: absolute; right: 0;top: 0;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+       .no-border label{margin-right: 54%;}
+       .no-border .adTisiDiv{color: #ccc; text-align: center;}
+       .list-block .item-content{padding: 0;}
+       .good-img{ width:5rem;height: 4.9rem;margin-right: .2rem;}
+       .div-detail-img{width: 100%;overflow: hidden;background: white;}
+       .button.button-fill.button-big {height: 1.8rem;line-height: 1.8rem;}
+       
+       /**分类至css开始 */
+       .width-100{width: 100%;height: 50px;}
+       .theme-dark .card {background: white;}
+        .card-content-inner{padding:0rem;padding-left: 0.75rem;padding-top: 0.7rem;margin-left: .89rem;}
+        .card-content-inner input{  width: 100%;border: 0px;border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+       /*  .card-header .none-div{height: 100%;text-align: center;border: 1px dashed #ccc;font-size: 1.2rem;position: relative;} */
+        .none-div .adImg{width: 2.5rem;height: 100%; overflow: hidden;position: absolute; right: 0;top: 0;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+        .no-border label{margin-right: 54%;}
+        .no-border .adTisiDiv{color: #ccc;}
+        .closeSpan{
+            width: 1rem;
+            height: 1rem;
+            line-height: .9rem;
+            text-align: center;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            margin-left: .1rem;
+            color: #ccc;
+            border: 1px solid #ccc;
+            }
+        .card-footer, .card-header{
+            padding-right: .2rem;
+        }
+       .button.button-fill.button-big {height: 1.8rem;line-height: 1.8rem;}
+       #popup{
+	    position: absolute;
+	    display: none;
+	    z-index: 3000;
+	    background-color: #FFF;
+	    bottom: 0;
+	    height: 45%;
+	    width: 100%;
+	    overflow:auto;
+	 }
+	  /**分类至css结束 */
+    </style>
+  </head>
+  <body ng-app="contentApp">
+    <div class="page"  ng-controller="customersCtrl">
+      <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left" href="javascript:void(0)" data-transition='slide-out' ng-click="back()">
+          取消
+        </a>
+        <h1 class="title">商品明细</h1>
+        <a href="javascript:void(0);" class="button button-link button-nav pull-right" ng-click="submit()"  data-transition='slide-out'>
+          添加
+        </a>
+        
+      </header>
+    
+      <div class="content" >
+        <!-- 这里是页面内容区 -->
+        <div>
+       
+        <input type="hidden" ng-model="catId" value="${catId!''}" id="catId">
+         <textarea placeholder="商品名称" ng-model="goodsName" ></textarea>
+           <div valign="bottom" class="card-header color-white no-border" style="display: inline-block;">
+             <!-- <img src="C:\fakepath\juhua.jpg" alt="加载失败" class="width-100"> -->
+             <div class="none-div">+
+             <input type="file" placeholder="添加分类广告" id="adId"     onchange="readFile(this,'typeGoodimg')" >
+             </div>
+             <div class="adTisiDiv">添加商品图</div> 
+          </div> 
+
+        </div>
+
+        <div class="list-block" style="margin: .50rem 0;">
+        <ul>
+        
+          <li class="item-content item-link open-panel">
+            <div class="item-media"><i class="icon icon-f7"></i></div>
+            <div class="item-inner">
+              <div class="item-title " id="resultAttr">添加商品型号</div>
+              <!-- <div class="item-after"></div> -->
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">库存</div>
+                <div class="item-input">
+                  <input type="text" ng-model="goodsNumber" placeholder="货物库存量">
+                </div>
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name non-padding" ></i></div>
+              <div class="item-inner">
+                <div class="item-title label">价格￥</div>
+                <div class="item-input">
+                  <input type="text" ng-model="shopPrice" placeholder="销售价格">
+                </div>
+              </div>
+            </div>
+          </li>
+		  <li class="item-content item-link" id="catTo">
+            <div class="item-media"><i class="icon icon-f7"></i></div>
+            <div class="item-inner" >
+              <div class="item-title cateyeTo" >分类至 </div>
+              <!-- <div class="item-after"></div> -->
+            </div>
+          </li>
+        </ul>
+        </div>
+        <div class="div-detail-img">
+           <div valign="bottom" class="card-header color-white no-border" style="padding:0; display: inline-block;justify-content: flex-start;">
+           <!-- <img src="C:\fakepath\juhua.jpg" alt="加载失败" class="width-100"> -->
+           <div class="none-div" style="">+
+           <input type="file" placeholder="添加分类广告" id="adId"     onchange="readFile(this,'typeDatailImg')" />
+           </div>
+           <div class="adTisiDiv" >添加商品详情图</div> 
+          </div>
+        </div>
+        
+       <!--  <div class="content-block" style="margin: 0.75rem 0;padding:0;">
+          <div class="row" style="background-color: transparent">
+            <div class="col-50"><a href="#" class="button button-big button-fill button-danger">上架</a></div>
+            <div class="col-50"><a href="#" class="button button-big button-fill button-success">删除</a></div>
+          </div>
+        </div> -->
+    </div>
+    </div>
+   <div class="panel-overlay"></div>
+  <!-- Left Panel with Reveal effect -->
+  <div class="panel panel-right panel-reveal theme-dark" id='panel-left-demo'>
+    
+     <p><a href="#" class="close-panel">关闭</a></p>
+    <!--  <div class="searchbar row" >
+      <div class="search-input col-80">
+        <label class="icon icon-search" for="search"></label>
+        <input type="search" id='search' placeholder='输入商品型号...'/>
+      </div>
+      <a class="button button-fill button-primary col-20">搜索</a>
+    </div> -->
+      <div class="list-block">
+      <ul class="ul-attr">
+        <!-- Text inputs -->
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">商品型号</div>
+              <div class="item-input">
+                <input type="text" placeholder="型号" id="goodsSn">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">属性名称</div>
+              <div class="item-input">
+                <input type="text" placeholder="如：颜色" name="attrName">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">属性值</div>
+              <div class="item-input">
+                <input type="text" placeholder="如：红色多个用-号隔开" name="attrValue">
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+       <div class="content-block">
+	    <div class="row">
+	      <div class="col-50"><a href="#" class="button button-big button-fill button-danger" id="addGoodsAttr">添加</a></div>
+	     <!--  <div class="col-50"><a href="#" class="button button-big button-fill button-success" id="saveAttr">保存</a></div> -->
+	    </div>
+	  </div>
+    
+    </div>
+  </div>
+    <div id="loadingDiv" style="position:fixed;display:none;z-index:2000;top:0px;left:0px;width:100%;height:100%;background-color:#ccc;  opacity: 0.4;"></div>
+    <div id="popup"  ng-Controller="categoryController">
+      
+	  <div class="card" ng-repeat="x in resultCategory">
+      <label class="label-checkbox item-content" style="float: left;">
+          <input type="radio" name="my-radio" value="{{x.catId}}">
+          <div class="item-media" style="margin-top: 1.4rem;margin-left: .2rem;"><i class="icon icon-form-checkbox"></i></div> 
+      </label>   
+      
+      <div sytle=" width: 90%;margin-left: .89rem;"> 
+       <!--  <div class="card-content"> -->
+          <div class="card-content-inner" sytle=" width: 90%;margin-left: .89rem; ">
+          <input type="text" name="catName" value="{{x.catName}}" placeholder="分类名称">
+          <!-- </div> -->
+        </div>
+          <div valign="bottom" class="card-header color-white no-border" style="display:box;display: inline-flex;">
+           <img src="..{{x.imgUrl}}" alt="" class="width-100 categoryImg" ng-click="ctgGoodList(x)" /><span class="closeSpan"  >x</span>
+       </div>
+      </div>
+    </div>
+    
+      <div class="content-block" style="margin: 0.75rem 0;padding:0;margin: auto; width: 92%;margin-bottom: .3rem;  position: fixed;z-index: 9992;bottom: 0;  margin-left: .5rem;">
+     	 <div id="addCategory"><a href="#" class="tab-item external active" >添加分类</a></div>
+          <div class="row" style="background-color: transparent">
+            <div class="col-50"><a href="#" class="button button-big button-fill button-danger ensure">确定</a></div>
+            <div class="col-50"><a href="#" class="button button-big button-fill button-success">取消</a></div>
+          </div>
+      </div>
+	</div>
+      <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+      <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='${ctxPath}/js/touch.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+      <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+      <script type="text/javascript" charset="utf-8">
+       	var goodsInfo = "";
+       	var mgaddGoods = {
+    			catId:"",
+    			layerIsHide:function(){
+    				$('#loadingDiv').css('display','none');  
+    	    		  $('#popup').css('display','none'); 
+    			}
+    	}
+           //AngularJS 
+        var app = angular.module("contentApp",[]);
+        app.controller('customersCtrl',function($scope,$window){
+           $scope.submit = function(){
+        	 var attrLi = $(".ul-attr").find("li");
+        	 var listAttr = {goodsAttr:[]};
+        	 var i=1;
+        	 for(i;i<attrLi.length;i+=2){
+        		 var goodsAttrObj = {
+    					 attrName: $(attrLi[i]).find("input[name=attrName]").val(),
+    					 attrValue:$(attrLi[i+1]).find("input[name=attrValue]").val()
+    			 }
+        		 listAttr.goodsAttr.push(goodsAttrObj);
+        	 }
+        	 var listAttrStr = JSON.stringify(listAttr);
+        	 var goodsSn = $("#goodsSn").val();
+        	 var catId = $("#catId").val();
+            goodsInfo = {
+             "goodsName":$scope.goodsName,
+             "catId":catId,
+             "goodsNumber":$scope.goodsNumber,
+             "shopPrice":$scope.shopPrice,
+             "listAttrStr":listAttrStr,
+             "goodsSn":goodsSn
+            }
+           
+            var  goodImg = $(".goodImg");
+            var fileId = [];
+            for(var i=0;i<goodImg.length;i++){
+                fileId[i] = goodImg[i].id;
+            }
+            if($.trim(goodsInfo.goodsName) == ""){
+            	alert("请输入商品名称");
+            	return ;
+            }
+            if($.trim(goodsInfo.goodsNumber) == ""){
+            	alert("请输入商品库存");
+            	return ;
+            }
+            if($.trim(goodsInfo.shopPrice) == ""){
+            	alert("请输入商品价格");
+            	return ;
+            }
+            if(fileId.length<=0){
+            	alert('请添加商品图片');
+            	return ;
+            }
+              /* $.ajaxFileUpload
+                (
+                    {
+                        url : '${ctxPath}/mgGoods/addgoods',
+                        secureuri:false,
+                        fileElementId:fileId,
+                        type:"post",
+                        dataType: 'json',
+                        data:goodsInfo,
+                        success: function (data)
+                        {
+                            if(data.status == "success"){
+                                 alert("添加成功 后续弹出3秒透明div");
+                            }
+                        },
+                        error: function (data, status, e)
+                        {
+                            alert('上传出错! 请联系管理员');
+                        }
+                    }
+                ); */
+                
+                $.ajax({
+                	  type: 'POST',
+                	  url: '${ctxPath}/mgGoods/addgoods',
+                	  // post payload:
+                	  data: goodsInfo,
+                	  dataType: 'json',
+                	  success: function (data)
+                      {
+                          if(data.status == "success"){
+                               alert("添加成功 后续弹出3秒透明div");
+                          }
+                      },
+                      error: function (data, status, e)
+                      {
+                          alert('上传出错! 请联系管理员');
+                      }
+                	})
+           }
+           
+           $scope.back = function(){
+        	   $window.history.back();
+           }
+            
+        });
+        app.controller('categoryController', function($scope, $http) {
+       	 loud();
+       	 function loud(){
+       		 $http.post("${ctxPath}/mgGoods/getCategoryList")
+                .success(function(response) {
+                	if(response.result.length<=0){
+                		$("#panel-right-demo").find("#addgoods").empty();
+               		$("#panel-right-demo").append("<div id='addgoods'>添加商品分类</div>");
+                	}else{
+                		$scope.resultCategory = response.result;
+                		/* var noInfoHtml = '<div id="addCategory"><a href="#" class="tab-item external active" >添加分类</a></div>';
+                		$("#popup").append(noInfoHtml); */
+                	}
+                }); 
+       	 }
+       	 
+        });
+        $(function(Zepto){
+        	var attrHtml = "<div><li>"+$(".ul-attr").find("li").eq(1).html()+"</li><li>"+$(".ul-attr").find("li").eq(2).html()+"</li>";
+        		attrHtml +='<li  style="text-align: right;margin-right: 1rem;"><a href="javascript:void(0)" onclick="deleteModel(this)">删除</a></li></div>';
+          $("#addGoodsAttr").on('tap',function(){
+			$(".ul-attr").append(attrHtml);
+          });
+          $("#saveAttr").on('tap',function(){
+        	 var resultAttr = "已添加商品型号"+$("#goodsSn").val();
+  			$("#resultAttr").text(resultAttr);
+  			$.closePanel();
+          });
+        
+          /* $("#resultAttr").on('tap',function(){
+        	  //$.openPanel("#panel-left-demo");
+           }); */
+          $("#catTo").on('tap',function(){
+   			  $('#loadingDiv').css('display','block');  
+   			  $('#popup').css('display','block');  
+      	   });
+           
+          $("#loadingDiv,.button-success").on('tap',function(){
+        	  mgaddGoods.layerIsHide();
+    	  }); 
+          $("#addCategory").on('tap',function(){
+    		  $.openPanel("#panel-right-demo");
+    		  mgaddGoods.layerIsHide();
+    	  });
+          $(".ensure").on('tap',function(){
+        	$("#catId").val($("input[name=my-radio]:checked").val()); 
+        	  var catName = $("input[name=my-radio]:checked").parent().parent().find("input[name=catName]").val();
+        	  var html = '<label style="color: red;">'+catName+'</label>';
+        	  $(".cateyeTo").append(html);
+    		  mgaddGoods.layerIsHide();
+    	  }); 
+          
+        });
+	
+        function deleteModel($this){
+        	$($this).parent().parent().remove();
+        }
+        function readFile($this,type){
+              var file =$($this)[0].files[0]; 
+              if(!/image\/\w+/.test(file.type)){ 
+                  alert("文件必须为图片！"); 
+                  return false; 
+              } 
+              var reader = new FileReader(); 
+              reader.readAsDataURL(file); 
+              reader.onload = function(e){ 
+                var time =  new Date().getTime();
+                  $($this).parent().parent().before('<img src="'+this.result+'" alt="" class="good-img" /><input type="file" name='+type+' id='+time+' value="'+this.result+'" class="goodImg" style= "display:none;">' );
+              } 
+          } 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.sys.dao.AdPositionMapper" >
+  <resultMap type="com.tiny.business.sys.model.AdPositionModel" id="adPositionMap">
+      <result column="position_id" property="positionId"/>
+      <result column="position_name" property="positionName"/>
+      <result column="ad_width" property="adWidth"/>
+      <result column="ad_height" property="adHeight"/>
+      <result column="position_desc" property="positionDesc"/>
+      <result column="media_type" property="mediaType"/>
+      <result column="user_id" property="userId"/>
+      <result column="src_path" property="srcPath"/>
+  </resultMap>
+  
+  <insert id="insertData"  parameterType="com.tiny.business.sys.model.AdPositionModel" >
+     insert into ad_position(position_name,ad_width,ad_height,position_desc,media_type,user_id,click_count,enabled) 
+     values(#{positionName},#{adWidth},#{adHeight},#{positionDesc},#{mediaType},#{userId},#{clickCount},#{enabled})
+  </insert>
+  
+  <select id="queryForList" parameterType="com.tiny.business.sys.model.AdPositionModel" resultMap="adPositionMap">
+      select position_id,position_name,position_desc,media_type,click_count,src_path from ad_position a where a.user_id = #{userId}
+  </select>
+  
+   
+</mapper>

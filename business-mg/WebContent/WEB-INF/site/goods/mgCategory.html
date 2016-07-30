@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+        .width-100{width: 100%;height: 50px;}
+        .card-content-inner{padding:0rem;padding-left: 0.75rem;padding-top: 0.7rem;}
+        .card-content-inner input{  width: 100%;border: 0px;border-bottom: 1px solid #ccc; padding-bottom: 0.3rem;}
+        .card-header .none-div{width: 2.5rem;height: 100%;/* border: 1px solid red; */text-align: center;border: 1px dashed #ccc;font-size: 1.2rem;position: relative;}
+        .none-div .adImg{width: 2.5rem;height: 100%; overflow: hidden;position: absolute; right: 0;top: 0;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+        .no-border label{margin-right: 54%;}
+        .no-border .adTisiDiv{color: #ccc;}
+        .closeSpan{
+            width: 1rem;
+            height: 1rem;
+            line-height: .9rem;
+            text-align: center;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            margin-left: .1rem;
+            color: #ccc;
+            border: 1px solid #ccc;
+            /* display: none; */
+            }
+        .card-footer, .card-header{
+            padding-right: .2rem;
+        }
+    
+    }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left" href="/demos/card" data-transition='slide-out'>
+          <span class="icon icon-left"></span>
+          返回
+        </a>
+        <h1 class="title">商品分类</h1>
+         <a class="button button-link button-nav pull-right" href="#" data-transition='slide-out' style="width: 2rem;font-size: 1.7rem;">
+         +
+        </a>
+      </header>
+      <nav class="bar bar-tab">
+        <a class="tab-item active" href="#" >
+          <span class="icon icon-home"></span>
+          <span class="tab-label">首页</span>
+        </a>
+        <a class="tab-item" href="#">
+          <span class="icon icon-me"></span>
+          <span class="tab-label">我</span>
+        </a>
+        <a class="tab-item" href="#">
+          <span class="icon icon-star"></span>
+          <span class="tab-label">收藏</span>
+        </a>
+        <a class="tab-item" href="#">
+          <span class="icon icon-settings"></span>
+          <span class="tab-label">设置</span>
+        </a>
+      </nav>
+      <div class="content" ng-app="contentApp" ng-controller="customersCtrl">
+        <!-- 这里是页面内容区 -->
+        <div class="page-index">
+          <div class="card" ng-repeat="x in result">
+           <div class="card-content">
+              <div class="card-content-inner">
+                <p><input type="text" name="catName" value="{{x.catName}}" placeholder="分类名称"></p>
+              </div>
+            </div>
+            <div valign="bottom" class="card-header color-white no-border" style="display:box;display: inline-flex;">
+             	<img src="..{{x.imgUrl}}" alt="" class="width-100 categoryImg"/><span class="closeSpan"  >x</span>
+               <!-- <div class="none-div">+
+               <input type="file" name="file" placeholder="添加分类广告" id="files1"  class="adImg"   onchange="readFile(this)" >
+               </div> 
+               <div class="adTisiDiv">添加分类广告图</div> -->
+            </div>
+           
+            <div class="card-footer">
+              <a href="#" class="link" ng-click=detValue(x,$event)>删除</a>
+              <a href="#" class="link" ng-click="addGood(x)">添加商品</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+            <p><a href="#" class="button button-fill" style="height: 1.75rem;line-height: 1.75rem;">保存商品分类</a></p>
+        </div>
+
+       </div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script type="text/javascript" src='../js/jquery.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../js/touch.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+     <script type='text/javascript' src='../js/ajaxfileupload.js' charset='utf-8'></script>
+     <script type="text/javascript" charset="utf-8">
+        $(function(Zepto){
+        	
+            // pageSex 
+            $('.pull-right').on('tap',function(){
+            	var cardHtml = doCategory.init();
+            	$(".page-index .card:last-child ").after(cardHtml);
+             $('.content').scrollTop( $('.content')[0].scrollHeight );
+            });
+
+            
+
+            $(".button-fill").on('tap',function(){
+                var fileId = [];
+                var categoryList = {category : []};
+               $(".card").each(function(index,element){
+                  fileId[index] = $(this).find('input[type="file"]').attr("id");
+                  var catName = $(this).find('input[name="catName"]').val();
+                  var categoryObj = {
+                    catName:catName,
+                    parentId:"0",
+                    sortOrder:index
+                    }
+                    categoryList.category.push(categoryObj);
+                });
+               var categoryListString = JSON.stringify(categoryList);
+              $.ajaxFileUpload
+                (
+                    {
+                        url : '../mgGoods/add',
+                        secureuri:false,
+                        fileElementId:fileId,
+                        type:"post",
+                        dataType: 'json',
+                        data:{"categoryListString":categoryListString},
+                        success: function (data)
+                        {
+                        	if(data.status == "success"){
+                        		 alert("添加成功 后续弹出3秒透明div");
+                        	}
+                        },
+                        error: function (data, status, e)
+                        {
+                            $.alert('上传出错! 请联系管理员');
+                        }
+                    }
+                );
+            });
+
+        });
+        var doCategory = {
+        	init:function(){
+        		var imgId = new Date().getTime();
+                var cardHtml ='<div class="card">'+
+                '<div class="card-content">'+
+                 ' <div class="card-content-inner">'+
+                 ' <p><input type="text" name="catName" value="" placeholder="分类名称"></p>'+
+                 ' </div>'+
+                 ' </div>'+
+                '<div valign="bottom" class="card-header color-white no-border" style="display:box;display: inline-flex;">'+
+                 ' <div class="none-div">+'+
+                 ' <input type="file" name="'+imgId+'" placeholder="添加分类广告" id="'+imgId+'" class="adImg"  onchange="readFile(this)"      />'+
+                 ' </div>'+
+                 ' <div class="adTisiDiv">添加分类广告图</div> '+
+           		 ' </div>'+
+          		 ' <div class="card-footer">'+
+             	' <a href="#" class="link" onclick="doCategory.close(this)">取消</a>'+
+             	' <a href="javascript:void(0);" class="link"></a>'+
+           		' </div>'+
+         		' </div>';
+             return cardHtml;
+        	},
+            close:function($this){
+                $($this).parent().parent().empty();
+            },
+            imgHidden:function(){
+                $(".closeSpan").hidden();
+            },imgShow:function(){
+                 $(".closeSpan").show();
+            }
+            
+            /* ,deleteCat:function($this){
+            	var catId = $($this).
+            	$.ajax({
+    				url:"../mgGoods/det",
+    				type:"post",
+    				dataType:"json",
+    				data:{"catId":catId},
+    				success:function(data){
+    					
+    					
+    				}
+    			});
+            } */
+        }
+
+        function readFile($this){
+             $($this).parent().hide();
+             $(".adTisiDiv").hide();
+            var file =$($this)[0].files[0]; 
+            if(!/image\/\w+/.test(file.type)){ 
+                alert("文件必须为图片！"); 
+                return false; 
+            } 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(file); 
+            reader.onload = function(e){ 
+                $($this).parent().parent().append('<img src="'+this.result+'" alt="" class="width-100 categoryImg"/><span class="closeSpan"  >x</span>' );
+            } 
+        }
+        //AngularJS 
+        var app = angular.module('contentApp',[]);
+        app.controller('customersCtrl', function($scope, $http, $location) {
+            $http.post("../mgGoods/getCategoryList")
+            .success(function(response) {
+            	if(response.result.length<=0){
+            		var cardHtml = doCategory.init();
+                	$(".page-index").append(cardHtml);
+            	}else{
+            		$scope.result = response.result;
+            	}
+            	
+            });
+            
+            $scope.detValue=function(x,$event){
+            	console.log(x.catId);
+            	var config = {params: {"catId": x.catId}};  
+            	$http({
+            		url:'../mgGoods/det',
+            		method:'POST',
+            		params: {"catId": x.catId}
+            		}).success(function(response) {
+                    	if(response.status=="success"){
+                    		$($event.target).parent().parent().empty();
+                    	}else{
+                    		alert("后期处理");//后期处理
+                    	}
+                    });
+            	
+            	
+            	/* $http.post("../mgGoods/det",config)
+                .success(function(response) {
+                	if(response.status=="success"){
+                		$($this).parent().parent().empty();
+                	}else{
+                		alert("后期处理");//后期处理
+                	}
+                }); */
+            }
+            
+            $scope.addGood = function(x){
+            	window.location.href="../mgGoods/addGoodView/"+x.catId;
+            }
+        });
+    </script>
+  </body>
+</html>

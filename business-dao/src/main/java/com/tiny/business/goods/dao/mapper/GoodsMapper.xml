@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiny.business.goods.dao.GoodsMapper" >
+  <resultMap type="com.tiny.business.goods.model.GoodsModel" id="goodsMap">
+      <id property="goodsId" column="goods_id"/>
+      <result column="goods_id" property="goodsId"/>
+      <result column="cat_id" property="catId"/>
+      <result column="goods_sn" property="goodsSn"/>
+      <result column="goods_name" property="goodsName"/>
+      <result column="click_count" property="clickCount"/>
+      <result column="brand_id" property="brandId"/>
+      <result column="provider_name" property="providerName"/>
+      <result column="goods_number" property="goodsNumber"/>
+      <result column="shop_price" property="shopPrice"/>
+      <result column="goods_brief" property="goodsBrief"/>
+      <result column="suppliers_id" property="suppliersId"/>
+      <!-- <result column="goods_desc" property="goods_desc"/> -->
+      <result column="integral" property="integral"/>
+      <result column="is_on_sale" property="isOnSale"/>
+     <!--  <association property="goodsType" javaType="com.tiny.business.goods.model.GoodsTypeModel"  >
+          <id property="goodsType_id" column="id"/>
+          <result column="goods_type_img" property="goodsTypeImg"/>
+          <result column="parent_cat_id" property="parentCatId"/>
+      </association> -->
+  </resultMap>
+  <sql id="good">
+      g.goods_id,g.cat_id,g.goods_sn,g.goods_name,g.click_count,g.brand_id 
+      ,g.provider_name,g.goods_number,g.goods_weight,g.shop_price
+      ,g.goods_brief,g.goods_desc,g.integral,g.is_on_sale,g.suppliers_id
+  </sql>
+  
+  <select id="queryForList" parameterType="com.tiny.business.goods.model.GoodsModel" resultMap="goodsMap">
+      select 
+     <include refid="good"/>
+     <!--  ,t.goods_type_img
+      ,t.parent_cat_id ,category c  c.cat_id = g.cat_id 
+      and-->
+      <!-- <if test="catId !='' and catId !=null">
+          , (select cat_name from category c where c.cat_id = #{catId}) catName
+      </if> -->
+      from goods g 
+      where g.suppliers_id = #{suppliersId}  and g.ALIVE_FLAG='1'
+      <if test="isOnSale!='' and isOnSale !=null">
+        and  is_on_sale = #{isOnSale}
+      </if>
+      <if test="catId !='' and catId !=null">
+          and cat_id = #{catId}
+      </if>
+      order by g.add_time desc
+  </select>
+  <insert id="insertData" parameterType="com.tiny.business.goods.model.GoodsModel">
+      insert into goods(goods_id,cat_id,goods_name,provider_name,goods_number,shop_price,suppliers_id,add_time)
+      values
+      (#{goodsId},#{catId},#{goodsName},#{providerName},#{goodsNumber},#{shopPrice},#{suppliersId},now())
+  </insert>
+   
+  <select id="queryObject" parameterType="com.tiny.business.goods.model.GoodsModel" resultMap="goodsMap">
+      select <include refid="good"/> from goods g where g.suppliers_id = #{suppliersId} and g.goods_id = #{goodsId}
+  </select>
+  
+  <update id="updateDataByPK" parameterType="com.tiny.business.goods.model.GoodsModel">
+      update goods set ALIVE_FLAG = '0' where goods_id = #{goodsId}
+  </update>
+  
+  <update id="outGoods" parameterType="com.tiny.business.goods.model.GoodsModel">
+      update goods set is_on_sale = #{isOnSale} where goods_id = #{goodsId}
+  </update>
+  
+  <update id="updateData"  parameterType="com.tiny.business.goods.model.GoodsModel">
+      update goods 
+      
+	  <trim prefix="SET" suffixOverrides=",">
+	    <if test="catId!=null and catId!='' "> 
+	        cat_id = #{catId} ,
+	    </if>
+	    <if test="goodsName !=null and goodsName !=''">
+	         goods_name=#{goodsName} ,
+	    </if>
+	    <if test="goodsNumber !=null and goodsNumber!=''">
+	       goods_number = #{goodsNumber} ,
+	    </if>
+	    <if test="shopPrice!=null and shopPrice!=''">
+	       shop_price =#{shopPrice}
+	    </if>
+	</trim>
+	where goods_id = #{goodsId}
+  </update>
+  
+  <select id="goodsFuzzyQuery" parameterType="com.tiny.business.goods.model.GoodsModel" resultMap="goodsMap">
+  		select <include refid="good"/> from goods
+  		where goods_name like '%'|| #{goodsName} ||'%'
+  </select>
+</mapper>

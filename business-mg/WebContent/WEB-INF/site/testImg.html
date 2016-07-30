@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	
+	
+	<style>
+    .text-center {text-align: center;}
+    .btn-hight {height:100px;width:230px;}
+    #img img{width:200px;}
+</style>
+</head>
+<body>
+	
+	<div class="col-lg-12 col-sm-12" style="margin: 12px auto 10px;">
+    <div class="form-group text-center">
+    	<input type="file" name="file" id="file" >
+        <button id="selectImage" type="button" class="btn btn-primary btn-hight"><h2>选择图片</h2></button>
+    </div>
+    <div class="form-group text-center">
+        <div id="img"></div>
+    </div>
+    <div class="form-group text-center">
+        <button id="uploadImage" type="button" class="btn btn-primary btn-hight"><h2>上传图片</h2></button>
+    </div>
+    <div class="form-group text-center">
+        <button id="downloadImage" type="button" class="btn btn-primary btn-hight"><h2>下载图片</h2></button>
+    </div>
+    <div class="form-group text-center">
+        <div id="img2"></div>
+    </div>
+    <div class="form-group text-center">
+        <button id="previewImage" type="button" class="btn btn-primary btn-hight"><h2>预览图片</h2></button>
+    </div>
+    
+     <div class="form-group text-center">
+        <button id="myUploadImage" type="button" class="btn btn-primary btn-hight"><h2>上传到本地服务器</h2></button>
+    </div>
+</div>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src='${ctxPath}/js/jquery.min.js' charset='utf-8'></script>
+	
+	<script type="text/javascript">
+	 var btus = document.getElementById("selectImage");
+	        var images = {
+	            localId: [],
+	            serverId: [],
+	            downloadId: []
+	        };
+	 wx.config({
+	        debug: true,
+	        appId: '${myaccount.appid}',
+	        timestamp: '${wxSign.timestamp}',
+	        nonceStr: '${wxSign.nonceStr}',
+	        signature: '${wxSign.signature}',
+	        jsApiList: [
+	            'checkJsApi',
+	            'chooseImage',
+	            'uploadImage',
+	            'downloadImage',
+	            'previewImage'
+	        ]
+	    });
+	 wx.ready(function () {
+	        btus.onclick =  function(){
+	           wx.chooseImage({
+	                success: function (res) {
+	                    images.localId = res.localIds;
+	                    jQuery(function(){
+	                        $.each( res.localIds, function(i, n){
+	                            $("#img").append('<img src="'+n+'" /> <br />');
+	                        });
+	                    });
+	                }
+	            });
+	        }
+	        
+	         document.querySelector('#selectImage').onclick = function () {
+	            wx.chooseImage({
+	                success: function (res) {
+	                    images.localId = res.localIds;
+	                    jQuery(function(){
+	                        $.each( res.localIds, function(i, n){
+	                            $("#img").append('<img src="'+n+'" /> <br />');
+	                        });
+	                    });
+	                }
+	            });
+	        }; 
+	 
+	         document.querySelector('#uploadImage').onclick = function () {
+	            if (images.localId.length == 0) {
+	                alert('请先使用选择图片按钮');
+	                return;
+	            }
+	            images.serverId = [];
+	            jQuery(function(){
+	                $.each(images.localId, function(i,n) {
+	                    wx.uploadImage({
+	                        localId: n,
+	                        success: function (res) {
+	                            images.serverId.push(res.serverId);
+	                            
+	                        },
+	                        fail: function (res) {
+	                            alert(JSON.stringify(res));
+	                        }
+	                    });
+	                });
+	            });
+	        };
+	 
+	          document.querySelector('#downloadImage').onclick = function () {
+	            if (images.serverId.length == 0) {
+	                alert('请先按上传图片按钮');
+	                return;
+	            }
+	            jQuery(function() {
+	                $.each(images.serverId, function (i, n) {
+	                    wx.downloadImage({
+	                        serverId: n,
+	                        success: function (res) {
+	                            images.downloadId.push(res.localId);
+	                        }
+	                    });
+	                });
+	                $.each( images.downloadId, function(i, n){
+	                    $("#img2").append('<img src="'+n+'" /> <br />');
+	                });
+	            });
+	        };
+	 
+	        /*  document.querySelector('#previewImage').onclick = function () {
+	            var imgList = [
+	                'http://wp83.net__PUBLIC__/images/gallery/image-1.jpg',
+	                'http://wp83.net__PUBLIC__/images/gallery/image-2.jpg'
+	            ];
+	            wx.previewImage({
+	                current: imgList[0],
+	                urls:  imgList
+	            });
+	        }; */
+	 
+	    });
+	 
+	     wx.error(function(res){
+	        var str = res.errMsg;
+	        var reg = /invalid signature$/;
+	        var r = str.match(reg);
+	        if(r !== null) {
+	            jQuery(function(){
+	                $.getJSON('http://www.demo.com/tp/home/index/ticket', function(data) {
+	                    if(data) {
+	                        alert('ticket update');
+	                        location = location;
+	                        window.navigate(location);
+	                    }
+	                });
+	            });
+	        }
+	    }); 
+	     
+	     $(function(){
+		    $("#myUploadImage").on('click',function(){
+		    	var wximages = JSON.stringify(images);
+		    	wximages = wximages.replace(/[/]/gm, '');
+		    	var data = "{\"serverId\":[\"YXMzpuoVG8G_UQ2kvoytQUo3UR_yD0X5Rc3co0O4mFEcG1snVSiA2ySoK1TBf0UC\"]}";
+		    	 $.ajax({
+	             	url:"${ctxPath}/wxapi/wxUploadImg/"+wximages,
+	             	type:"POST",
+	             	dataType:"json",
+	             	success:function(data){
+	             		alert(12);
+	             	}
+	             });
+	   	  }); 
+	     })
+	</script> 
+</body>
+</html>
