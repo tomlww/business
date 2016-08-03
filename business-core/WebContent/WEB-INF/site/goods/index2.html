@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>大世界;全拿走;</title>
+	  	<meta name="format-detection" content="telephone=no" />
+	  	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	  	<meta HTTP-EQUIV="Expires" CONTENT="-1">
+	  	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
+	  	<meta name="apple-mobile-web-app-capable" content="yes"> 
+	  	<meta name="screen-orientation" content="portrait">
+	  	<meta name="x5-orientation" content="portrait">
+	  	<meta name="x5-fullscreen" content="true">
+	  	<meta name="360-fullscreen" content="true">
+	  	<meta name="renderer" content="webkit">
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+ 		
+		<style type="text/css">
+			body{max-width: 660px; }
+			.div_section{width: 100%;background-color: #F5F5F5;}
+
+			.searchDiv{ width: 100%; height: 30px; line-height: 30px;}
+			.search_form{position:relative; margin-top: 2px; display:inline-block;width: 70%;} 
+			.search_form:hover{-webkit-box-shadow:0 0 3px #999;-moz-box-shadow:0 0 3px #999} 
+			.sinput{float:left; width:100%; height:21px; line-height:21px; padding:4px 7px; color:b3b3b3;  
+			border:1px solid #999; border-radius:2px 0 0 2px; background-color:#fbfbfb;} 
+			.sbtn{float:left; width:50px; height:31px; padding:0 12px; margin-left:-1px;  
+			border-radius:0 2px 2px 0; border:1px solid #4d90fe; background-color:#4d90fe; cursor:pointer;  
+			display:inline-block; font-size:12px; vertical-align:middle; color:#f3f7fc;position:absolute;} 
+			.sbtn:hover{background:#4084f2} 
+			.ad_div{width: 100%;height: 178px; background-image: url(images/slide1.jpg);}
+			.ad_div .seach_div{width: 100%;  height: 20%;text-align: center;}
+			.goods{ margin-bottom: 0.8rem;}
+			.goods_div{  width: 32%; height: 32%; margin-top: 4px; margin-left: 2px; float:left;}
+			.goods_div:nth-of-type(1) li:first-child{color: #E48D51;}
+			.goods_div:nth-of-type(2) li:first-child{color: #46A9E4;}
+			.goods_div:nth-of-type(3) li:first-child{color: #E95A54;}
+			.goods_div li:nth-of-type(2){color: #B6B3B4;}
+			
+			nav {
+				  margin-top: 11px;
+				  padding: 0 3.125%;
+				}
+			.fz12 {
+				  font-size: 12px;
+				  display: inline-block;
+				}	
+			.quick-entry-nav {
+				  margin-top: 11px;
+				  padding: 0 3.125%;
+				  width: 100%;
+				  height: 152px;
+				}
+			.quick-entry-link {
+				  width: 25%;
+				  float: left;
+				  font-size: 12px;
+				  text-decoration: none;
+				  color: #666;
+				  text-align: center;
+				  display: block;
+				  padding-bottom: 11px;
+				}
+			.quick-entry-link img {
+				  display: block;
+				  width: 40px;
+				  height: 40px;
+				  margin: 0 auto 6px auto;
+				}
+			#focus-btn {
+				  overflow: hidden;
+				  text-align: center;
+				  position: absolute;
+				  left: 0;
+				  z-index: 11;
+				  top: 146px;
+				  width: 100%;
+				 
+				}
+			#focus-btn span {
+				  border-radius: 7px;
+				  -webkit-border-radius: 7px;
+				  -ms-border-radius: 7px;
+				  height: 6px;
+				  width: 6px;
+				  border: 1px solid #fff;
+				  margin: 0 4px;
+				  display: inline-block;
+				  opacity: 1;
+				}
+			#focus-btn .active {
+				  border-radius: 7px;
+				  -webkit-border-radius: 7px;
+				  -ms-border-radius: 7px;
+				  height: 6px;
+				  width: 6px;
+				  border: 1px solid #fff;
+				  margin: 0 4px;
+				  display: inline-block;
+				  background: #FFF;
+				}
+			.topNewInfo{width: 100%; margin: 0px auto; height: 30px;border: 1px solid #ccc; }
+			.topNewInfo lable{color: red; }
+			.goods{width: 100%;height: 303px;}
+			.begin-page-div{width: 100%;height: 38px;  line-height: 38px;background-color: #666666;color: white; position: fixed;z-index: 333; bottom: 0;}
+  			.begin-page-div ul li{float: left;line-height: 38px;width: 20%; list-style: none;}
+
+  			@media only screen and (max-width: 640px) {
+			    .goods {
+			        width:100%;
+			        height: 108px;
+			    }
+
+			}
+
+
+
+
+
+  /******************商品样式*******************/
+
+	.goods_item{
+        width:530px;
+        margin: 0px auto;
+        text-align: center;
+      /*  border: 1px solid blue;
+      background-color: #ccc; */
+      }
+  .item{ 
+     position: relative;
+      overflow: hidden;
+      width: 142px;
+      height: 220px;
+      border: 0.1rem solid #FFFFFF;
+      float: left;
+      margin: 0.25rem;
+      background-color: #FFFFFF;
+      padding-left: 0.15rem;
+      border-radius: 3px;
+    }
+
+     .item a div{
+          width: 140px;
+     }
+     .item a div img{
+      width: 140px;
+      height: 141px;
+     
+     }
+    
+    .cost{
+       
+         text-align: left;
+    }
+    .cost div {
+        float: right;
+     height: 19px;
+     color: #999999;
+      border: 1px solid #d7d7d7;
+      background-color: #FFFFFF;
+      text-align: center;
+      line-height: 19px;
+      border-radius: 5px;
+     
+    }
+    .cost span{
+    height: 28px;
+    color: red;
+    text-align: left;
+    }
+    
+    .name{
+    border-bottom: solid 1px #d7d7d7;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    }
+    .info{
+        font-size: 13px;
+        color: #333333;
+
+    }
+
+   /******************响应式布局*******************/
+    @media screen and (min-width: 640px) {
+       .goods_item{width: 660px}
+     }  
+
+     @media screen and (min-width: 30px) and (max-width: 470px){
+     .goods_item{width:310px;}
+     }  
+
+    @media screen and (min-width: 470px) and (max-width: 600px){
+     .goods_item{width: 470px}
+     }  
+ 
+    @media screen and (min-width: 520px) and (max-width: 640px){
+     .goods_item{width: 470px}
+     } 
+		</style>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+	<div class="div_section">
+		<section>
+			<div class="ad_div">
+				<div class="seach_div">
+					<form action="#" method="get" class="search_form"> 
+					    <input type="text" name="s" class="sinput" placeholder="输入 回车搜索"  autofocus x-webkit-speech>  
+					</form> 
+				</div>
+				<div id="focus-btn">
+		              <span class="" data-ol-btn="btn"></span>
+		              <span class="active" data-ol-btn="btn"></span>
+		              <span class="" data-ol-btn="btn"></span>
+		              <span class="" data-ol-btn="btn"></span>
+		        </div>
+			</div>	
+		</section>
+		<section>
+				<nav class="quick-entry-nav">
+			        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="分类查询" page_name="index" href="http://m.jd.com/category/all.html"><img width="45" height="45" src="${ctxPath}/images/nav1.png"><span>分类查询</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="物流查询" page_name="index" href="http://home.m.jd.com/user/userAllOrderList.action"><img width="45" height="45" src="${ctxPath}/images/nav2.png"><span>物流查询</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="购物车" page_name="index" href="http://p.m.jd.com/cart/cart.action"><img width="45" height="45" src="${ctxPath}/images/nav3.png"><span>购物车</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="我的京东" page_name="index" href="http://home.m.jd.com/myJd/home.action"><img width="45" height="45" src="${ctxPath}/images/nav4.png"><span>我的京东</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="抢5元话费" page_name="index" href="http://chongzhi.m.jd.com/"><img width="45" height="45" src="${ctxPath}/images/nav5.png"><span>抢5元话费</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="领券中心" page_name="index" href="http://coupon.m.jd.com/center/getCouponCenter.action"><img width="45" height="45" src="${ctxPath}/images/nav6.png"><span>领券中心</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="京东超市" page_name="index" href="http://sale.jd.com/m/act/ysrEnGBzJC7.html"><img width="45" height="45" src="${ctxPath}/images/nav7.png"><span>京东超市</span></a>
+		        <a class="quick-entry-link fz12 J_ping" report-eventid="MHome_Icons" report-eventparam="我的关注" page_name="index" href="http://home.m.jd.com/myJd/myFocus/focusWare.action"><img width="45" height="45" src="${ctxPath}/images/nav8.png"><span>我的关注</span></a>
+		 	</nav>
+
+
+			<div class="floor">			 
+				<div class="floor-item">
+					<div class="container-col01  ">
+			   <div id="slider_542_1" class="slider-wrapper">
+					<ul id="slider_542_1_touch" class="new-slide" data-slide-ul="firstUl">
+			            <li data-ul-child="child" class="slide-li"><a class="J_ping" report-eventid="MHome_Floor" report-eventparam="542_0_CMSSH69531_1455870343__0_1_" page_name="index" href="http://h5.m.jd.com/active/MzaKQWRz8ZjyizzLXKok25MdLNt/index.html"><img alt="" src="images/gg2.png"></a></li>
+					</ul>
+			        <div class="focus-btn" data-small-btn="smallbtn">
+			        </div>
+			    </div>
+				</div>
+				</div>  	                 																		
+			</div>
+
+		 	<div class="topNewInfo">
+		 		TOU <lable>头条</lable> ：我的胸太大 这里装不下....
+		 	</div>
+
+
+
+	</section>
+	
+		<div class="goods_item"  ng-app="pageApp" ng-controller="pageController">
+			
+		   <div>
+		   <label></label>
+		   <span> 14:38 </span>
+		 	  为您推荐已更新
+		   <span></span>
+		   </div>
+		   <div class="item" ng-repeat="item in result">
+		   <a href="${ctxPath}/goods/getGoodDetils/{{item.goodsId}}/{{item.suppliersId}}" class="url" data-sku="1757430183" data-cid="" data-recid="630002" repurl="//mercury.jd.com/log.gif?t=rec.630002&amp;v=src=rec$action=1$reqsig=826793c561188a22fba5acf5c7409ba72f50f40a$enb=1$sku=0$csku=1757430183$index=0$st=0$adcli=$expid=117&amp;rid=3991474079388518043&amp;ver=1&amp;sig=14e6342663e801a4af43a878d21cb8596e2ca28a">         
+		   <div class="img">            
+		   <img alt="" src="${ctxPath}/images/goodsList1.png" loaded="121">         
+		   </div>         
+		   <div class="info" >             
+		   <div class="name">{{item.goodsName}}</div>   
+
+		   <div class="cost">                 
+		   <span class="price">¥{{item.price}}</span>                 
+		   <div class="btn_relate" skuid="1757430183" jp="2900.00" style=" width: 50px;" >看相似</div>             
+		   </div>         
+		   </div>     
+		   </a> 
+		   </div>
+
+		</div>
+
+
+		<!-- 商品分类栏-->
+		<div>
+			<img src="${ctxPath}/images/slide2.jpg" alt="">
+		</div>
+
+		<div class="begin-page-div">
+			<ul>
+				<li>首页</li>
+				<li>分类</li>
+				<li>发现</li>
+				<li>购物车</li>
+				<li>我的</li>
+			</ul>	
+		</div>
+	</div>
+	<script src="${ctxPath}/js/angular.min.js"></script>
+	<script>
+	var app = angular.module('pageApp',[]);
+    app.controller('pageController', function($scope,$http) {
+    	load();
+        function load(){
+		$http({
+			url : '${ctxPath}/goods/getGoods',
+			method : 'POST',
+			params:{"suppliersId":"2"}
+		}).success(function(response) {
+			if (response.status == "error") {
+				alert("系统异常");
+				return;
+			} else {
+				$scope.result = response.goods;
+			  }
+			});
+		  }
+		});
+	</script>
+	</body>
+	</html>	
+
+

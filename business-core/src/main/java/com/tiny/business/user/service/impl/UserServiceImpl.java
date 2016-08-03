@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService{
 		logger.debug("====用户login开始===");
 		UserModel userModel = new UserModel();
 		BeanUtils.copyProperties(userVo, userModel);
+		
 		int count = userMapper.login(userModel);
 		logger.debug("====用户login结束===count==="+count);
 		return count;

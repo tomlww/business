@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta name="flexible" content="initial-dpr=2,maximum-dpr=3" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<title>农城微商,而且模型进行中</title>
+	<link rel="stylesheet" href="../css/myCommon.css" />
+	<style>
+		.bar {
+		    position: absolute;
+		    right: 0;
+		    left: 0;
+		    z-index: 10;
+		    height: 2.2rem;
+		    padding-right: 0.5rem;
+		    padding-left: 0.5rem;
+		    background-color: #f7f7f8;
+		    -webkit-backface-visibility: hidden;
+		    backface-visibility: hidden;
+		}
+		.bar:after {
+		    content: '';
+		    position: absolute;
+		    left: 0;
+		    bottom: 0;
+		    right: auto;
+		    top: auto;
+		    height: 1px;
+		    width: 100%;
+		    background-color: #e7e7e7;
+		    display: block;
+		    z-index: 15;
+		    -webkit-transform-origin: 50% 100%;
+		    transform-origin: 50% 100%;
+		}
+		.bar .icon {
+		    position: relative;
+		    z-index: 20;
+		    padding: .5rem .1rem;
+		    font-size: 1rem;
+		    line-height: 1.2rem;
+		}
+		/* .icon {
+		    font-family: "iconfont-sm" !important;
+		    font-style: normal;
+		    display: inline-block;
+		    vertical-align: middle;
+		    background-size: 100% auto;
+		    background-position: center;
+		    -webkit-font-smoothing: antialiased;
+		    -webkit-text-stroke-width: 0.2px;
+		    -moz-osx-font-smoothing: grayscale;
+		} */
+
+		.title {
+		    position: absolute;
+		    display: block;
+		    width: 100%;
+		    padding: 0;
+		    margin: 0 -0.5rem;
+		    font-size: 0.85rem;
+		    font-weight: 500;
+		    line-height: 2.2rem;
+		    color: #3d4145;
+		    text-align: center;
+		    white-space: nowrap;
+		}
+		.bg-border{
+			width:100%;
+			padding:0;
+			margin:0;
+			border-top:1px solid #ccc;
+			border-bottom:1px solid #ccc;
+			background:white;
+
+			padding-right: 0.75rem;
+		    position: relative;
+		    
+		    padding-top: 0.4rem;
+		    padding-bottom: 0.35rem;
+		    line-height:2rem;
+		    min-height: 2.2rem;
+
+		    overflow: hidden;
+		   
+
+		}
+		
+		.pd-lf5{
+			padding-left:.5rem;
+		}
+		
+		/**背景图begin*/
+		.bg-img{
+			height:10rem;
+			background:url('image/ygx.jpg');
+			background-repeat:no-repeat;
+			background-size:100% 100%;
+		}
+		/**背景图end*/
+		
+		
+		/* .login-div{
+			width: 5rem;
+		    background: white;
+		    margin: 0 auto;
+		    border-radius: 50%;
+		    height: 5rem;
+		    margin-top: 3rem;
+		    padding-top: 3rem;
+		    top: 5.5rem;
+		    position: absolute;
+		    top: 0rem;
+		    left: 40%;
+		    text-align: center;
+		    padding-top: 14rem;
+		} */
+		.ps-top2{
+			position: relative;
+    		top: 2rem;
+		}
+
+		.login-div{
+			
+			width:5rem;
+			height:5rem;
+			background:white;
+			border-radius:50%;
+			border:1px solid red;
+			
+		}
+		
+		.box-vertical{
+			-moz-box-orient:vertical;
+			-webkit-box-orient:vertical;
+			box-orient:vertical;/* 水平排列 */
+		}
+		.bckg-opacity{
+			background: #444;
+		    -moz-opacity: 0.6;
+		    opacity: .60;
+		    filter: alpha(opacity=60);
+		}
+		.mg2{
+			margin: 0px 2px 0px 2px;
+		}
+		.box-justify{
+			-webkit-box-pack: justify;
+		    -webkit-justify-content: space-between;
+		    justify-content: space-between;
+		    -webkit-box-align: center;
+		    -webkit-align-items: center;
+		    align-items: center;
+		}
+		
+	</style>
+</head>
+<body>
+	<header class="bar bar-nav">
+	    <a class="icon icon-me pull-left open-panel c9">设置</a>
+	    <h1 class="title">标题</h1>
+	    <a href="#" class="icon icon-me pull-right open-panel c9">消息</a>
+	</header> 
+	  <div class="bg-img ta-ct wrap ps-top2 box-vertical">
+		 <div class=" wrap  flex-2 box-center">
+		 		<a href="../user/logIndex">
+				  	<div class="login-div ">
+				  		<img src="../images/user.png"  alt="登录/注册" style="width: 1.5rem;" >
+				  		<div>登录/注册</div>
+				  	</div>
+			  	</a>
+		  </div>
+		  <ul class="bckg-opacity wrap flex-1 color-white box-center">
+		  		<li class="flex-1">关注的商品</li>
+		  		<li class="flex-1">关注的商品</li>
+		  		<li class="flex-1">浏览记录</li>
+		  </ul> 
+	  </div>
+   	<div class="bkg-white bred mg-top3 h7">
+   		<div class="wrap box-justify flex-center h2d5 bd-btm">
+   			<div >
+   				<label></label>
+   				<label>我的订单</label>
+   			</div>
+   			<div >
+   				<label class="ft-size8 c9">查看全部订单</label>
+   				<label class="mg2">
+   					<img src="../image/rigth.png" alt="" style="width: .8rem;">
+   				</label>
+   			</div>
+   		</div>
+   		<div class=" box-justify flex-center">
+   			<div>待付款</div>
+   			<div>待收货</div>
+   			<div>待评价</div>
+   			<div>返修/退货</div>
+   		</div>
+   	</div>
+
+   	<div class="bkg-white bred mg-top1 h7">
+   		
+   	</div>
+</body>
+</html>

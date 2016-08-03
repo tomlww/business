@@ -146,11 +146,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		
-		<dependency>
-	      <groupId>junit</groupId>
-	      <artifactId>junit</artifactId>
-	      <scope>test</scope>
-	    </dependency>
 	    
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -192,7 +187,11 @@
 			<artifactId>beetl</artifactId>
 		</dependency>
 		
-		
+		<!-- redis jar -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>commons-beanutils</groupId>
@@ -217,11 +216,11 @@
 			<groupId>commons-net</groupId>
 			<artifactId>commons-net</artifactId>
 		</dependency> -->
-	    <dependency>
+	   <!--  <dependency>
 	      <groupId>junit</groupId>
 	      <artifactId>junit</artifactId>
 	      <scope>test</scope>
-	    </dependency>
+	    </dependency> -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -231,6 +230,11 @@
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
 		</dependency>
   </dependencies>
  <!--  <profiles>
