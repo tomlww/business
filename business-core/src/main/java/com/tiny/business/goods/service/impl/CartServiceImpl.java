@@ -1,13 +1,17 @@
 package com.tiny.business.goods.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.beetl.ext.fn.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.tiny.business.goods.dao.GoodsMapper;
 import com.tiny.business.goods.model.GoodsModel;
 import com.tiny.business.goods.service.CartService;
@@ -83,5 +87,25 @@ public class CartServiceImpl  implements CartService{
 		cart.setUserId(userId);
 		cart.setSessionId(sessionId);
 		return cartMapper.queryForList(cart);
+	}
+	
+	/**
+	 * 确应订单
+	 */
+	@Override
+	public List<CartModel> confirmOrder(HttpServletRequest request, String cartInfo)
+			throws Exception {
+		List<CartModel> list = new ArrayList<CartModel>();
+		List<CartModel> listCart = JSONArray.parseArray(cartInfo, CartModel.class);
+		for (int i = 0; i < listCart.size(); i++) {
+			CartModel cart = listCart.get(i);
+			GoodsModel goodsModel = goodsMapper.getGoodsById(cart.getGoodsId());
+			cart.setGoodsPrice(goodsModel.getShopPrice());
+		}
+		/*for(String s:sId){
+			CartModel cartModel = goodsMapper.getGoodsById(s);
+			list.add(cartModel);
+		}*/
+		return list;
 	}
 }

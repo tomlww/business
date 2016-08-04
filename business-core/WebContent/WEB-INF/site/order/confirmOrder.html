@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <style>
+      body{width: 97%;margin: 0 auto;padding: 0; }
+      * {
+		  margin: 0;
+		  padding: 0;
+		}
+        
+    .item-after span:nth-child(2){
+        display:block;  
+    }
+    .address-div{
+        display: flex;
+        height: 2.8rem;
+        line-height: 2.8rem;
+        /* margin-right: auto; */
+        /* margin-left: auto; */
+        background: #fff;
+        padding-left: .4rem;
+    }
+	 .address-div a{
+        margin-right: auto;
+     }
+     .address-div span{
+       color: #0894EC;
+     }
+    </style>
+  </head>
+  <body>
+
+
+    
+
+      <div class="page-group">
+        <!-- 单个page ,第一个.page默认被展示-->
+        <div class="page">
+            <!-- 标题栏 -->
+            <header class="bar bar-nav"><a class="button button-link button-nav pull-left" href="/demos/card" data-transition='slide-out'>
+            <span class="icon icon-left"></span>
+              返回
+            </a>
+             <h1 class="title">确认订单</h1>
+            </header>
+
+            <!-- 工具栏 -->
+            <nav class="bar bar-tab">
+                <a class="tab-item external active" href="#">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">首页</span>
+                </a>
+                <a class="tab-item external" href="#">
+                    <span class="icon icon-star"></span>
+                    <span class="tab-label">收藏</span>
+                </a>
+                <a class="tab-item external" href="#">
+                   <!--  <span class="icon icon-settings"></span> -->
+                    <span class="tab-label">提交订单</span>
+                </a>
+            </nav>
+
+            <!-- 这里是页面内容区 -->
+            <div class="content">
+                <div class="address-div">
+                <a href="../sys/intiAdr" class="item-link list-button">! 请填写收货地址</a>
+                <span class="icon icon-right"></span>
+                </div>
+               <div class="list-block media-list">
+                <ul>
+                   <%for(cart in list){%>
+                    <li>
+				    <label class="label-checkbox item-content floatLiLabel">
+				      <div class="item-media">
+				       <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style=" width:4rem; " >
+				      </div>
+				       <div class="item-inner">
+			              <div class="item-title-row" >
+			                <div class="item-title"> ${cart.goodsName}</div>
+                            <div class="item-after" style=" display: block;">
+                            	<span>$ ${cart.goodsPrice}</span>
+                            	<span>x ${cart.goodsNumber}</span>
+                            </div>
+			              </div>
+			              <div class="item-subtitle">编号：${cart.goodsSn}</div>
+			             <div class="pro-count">
+							<div class="part-note-msg">
+							规格:军绿色 175
+							</div>
+						</div>
+			            </div>
+				    </label>
+				  	</li>
+                   <%}%>
+		          
+                </ul>
+              </div>
+             </div>
+        </div>
+
+        <!-- 其他的单个page内联页（如果有） -->
+       <!--  <div class="page">...</div> -->
+    </div>
+
+  
+    <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/touch.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+     <script type="text/javascript" charset="utf-8">
+        $(function(Zepto){
+          // $.init();
+        });
+
+    </script>
+  </body>
+</html>

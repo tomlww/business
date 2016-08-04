@@ -1,5 +1,9 @@
 package com.tiny.business.order.model;
 
+import java.util.List;
+
+import com.tiny.business.goods.model.GoodsAttrModel;
+
 
 public class CartModel {
 	private String recId;//购物车记录编号
@@ -12,6 +16,7 @@ public class CartModel {
 	private int goodsNumber;//购买数量
 	private String goodsAttr;//商品属性编号 多个商品属性用-隔开
 	private String isGift;//是否为赠品
+	private List<GoodsAttrModel> listGoodsAttr; //商品属性
 	
 	public String getRecId() {
 		return recId;
@@ -74,5 +79,12 @@ public class CartModel {
 	public void setIsGift(String isGift) {
 		this.isGift = isGift;
 	}
+	public List<GoodsAttrModel> getListGoodsAttr() {
+		return listGoodsAttr;
+	}
+	public void setListGoodsAttr(List<GoodsAttrModel> listGoodsAttr) {
+		this.listGoodsAttr = listGoodsAttr;
+	}
+	
 	
 }

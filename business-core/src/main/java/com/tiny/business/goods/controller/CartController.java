@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,4 +61,22 @@ public class CartController {
 		}
 		return map;
 	}
+	/**
+	 * 确应订单
+	 * @param cartInfo 商品info
+	 * @return
+	 */
+	@RequestMapping("/confirmOder")
+	public ModelAndView confirmOrder(HttpServletRequest request,@RequestParam String cartInfo){
+		ModelAndView model = new ModelAndView("order/confirmOrder");
+		try {
+			List<CartModel> list = cartService.confirmOrder(request,cartInfo);
+			model.addObject("list", list);
+		} catch (Exception e) {
+			logger.info("================confirmOrder=========确应订单异常",e);
+		}
+		return model;
+	}
+	
+	
 }
