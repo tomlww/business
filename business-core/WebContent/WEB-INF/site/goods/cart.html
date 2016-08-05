@@ -133,7 +133,7 @@
 	 				<input type="button" class="input" value="-"><input type="text" class="textInput" value="1"><input type="button" class="input"  value="+">
 	 			</div>
 	 			<div class="sectionTwo fts16">
-	 				<input type="button" name="" value="延保服务">
+	 				<input type="button" name="" class="confirm" value="延保服务">
 	 			</div>
 	 		</div>
 	 	</div> 
@@ -148,28 +148,30 @@
 	 <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 	 <script type="text/javascript">
 		 $(function(Zepto){
-			 var cartInfo = {goods:[]}
-			 for(var i=0;i<2;i++){
-				 var listGoodsAttr = [];
-				 var goodsAttr = {
-     					"goodsAttrId":"123",
-     					"attrName":"颜色",
-     					"attrValue":"红色",
-     					"goodsSn":"88888"
-     					}
-				 listGoodsAttr.push(goodsAttr);
-				 var good = {
-					goodsId:"1",
-					goodsNumber:"2",
-					listGoodsAttr:listGoodsAttr
+			 $(".confirm").on('click',function(){
+				 var cartInfo = {goods:[]}
+				 for(var i=0;i<2;i++){
+					 var listGoodsAttr = [];
+					 var goodsAttr = {
+	     					"goodsAttrId":"123",
+	     					"attrName":"颜色",
+	     					"attrValue":"红色",
+	     					"goodsSn":"88888"
+	     					}
+					 listGoodsAttr.push(goodsAttr);
+					 var good = {
+						recId:"1"
+						/* ,goodsNumber:"2" */
+						,listGoodsAttr:listGoodsAttr
+					 }
+					 cartInfo.goods.push(good);
 				 }
-				 cartInfo.goods.push(good);
-			 }
-			 cartInfo = JSON.stringify(cartInfo);
-			 var params = {
-					 cartInfo:cartInfo
-			 }
-			 form_submit("../cart/confirmOder", "post", params)
+				 cartInfo = JSON.stringify(cartInfo);
+				 var params = {
+						 cartInfo:cartInfo
+				 }
+				 form_submit("../cart/confirmOder", "post", params);
+			 })
 	      });
 		 function form_submit(url, method, params) {
 			  var form = document.createElement("form");

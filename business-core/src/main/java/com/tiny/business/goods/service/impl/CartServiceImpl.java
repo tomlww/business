@@ -1,17 +1,16 @@
 package com.tiny.business.goods.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.beetl.ext.fn.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.tiny.business.goods.dao.GoodsMapper;
 import com.tiny.business.goods.model.GoodsModel;
 import com.tiny.business.goods.service.CartService;
@@ -93,19 +92,25 @@ public class CartServiceImpl  implements CartService{
 	 * 确应订单
 	 */
 	@Override
-	public List<CartModel> confirmOrder(HttpServletRequest request, String cartInfo)
+	public Map<String, Object> confirmOrder(HttpServletRequest request, String cartInfo)
 			throws Exception {
-		List<CartModel> list = new ArrayList<CartModel>();
-		List<CartModel> listCart = JSONArray.parseArray(cartInfo, CartModel.class);
+		Map<String, Object> rmap = new HashMap<String, Object>();
+		JSONObject json = JSONObject.parseObject(cartInfo);
+		String goods = json.get("goods").toString();
+		List<CartModel> listCart = JSONObject.parseArray(goods, CartModel.class);
+		double total = 0;
 		for (int i = 0; i < listCart.size(); i++) {
 			CartModel cart = listCart.get(i);
-			GoodsModel goodsModel = goodsMapper.getGoodsById(cart.getGoodsId());
-			cart.setGoodsPrice(goodsModel.getShopPrice());
+			CartModel cartModel = cartMapper.queryCartById(cart.getRecId());
+			double price = cartModel.getGoodsPrice();//价格
+			int number  = cartModel.getGoodsNumber();//数量
+			cart.setGoodsPrice(price);//商品的价格
+			cart.setGoodsNumber(number);//数量
+			total += price * number; //计算总价格
 		}
-		/*for(String s:sId){
-			CartModel cartModel = goodsMapper.getGoodsById(s);
-			list.add(cartModel);
-		}*/
-		return list;
+		total = total/100;//转成元;存的是分
+		rmap.put("total", total);
+		rmap.put("listCart", listCart);
+		return rmap;
 	}
 }

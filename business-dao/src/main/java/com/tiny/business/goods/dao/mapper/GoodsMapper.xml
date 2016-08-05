@@ -91,7 +91,4 @@
   		where goods_name like '%'|| #{goodsName} ||'%'
   </select>
   
-  <select id="getGoodsById" parameterType="string" resultMap="goodsMap">
-      select g.shop_price from goods g where g.goods_id = #{goodsId}
-  </select>
 </mapper>

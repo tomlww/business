@@ -1,6 +1,7 @@
 package com.tiny.business.goods.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,5 +18,5 @@ public interface CartService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CartModel> confirmOrder(HttpServletRequest request, String cartInfo) throws Exception;
+	public Map<String, Object> confirmOrder(HttpServletRequest request, String cartInfo) throws Exception;
 }

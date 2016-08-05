@@ -82,4 +82,9 @@
       	and	session_id = #{sessionId} 
       </if>
   </update>
+  
+  <select id="queryCartById" parameterType="com.tiny.business.order.model.CartModel" resultMap="cartMap">
+      select c.goods_number,c.goods_price from cart c where c.rec_id = #{recId}
+  </select>
+  
 </mapper>

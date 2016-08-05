@@ -11,7 +11,4 @@ public interface GoodsMapper  extends BaseDao{
 	
 	List<GoodsModel>goodsFuzzyQuery(GoodsModel g) throws Exception;
 
-	GoodsModel getGoodsById(String goodsId) throws Exception;
-	
-
 }

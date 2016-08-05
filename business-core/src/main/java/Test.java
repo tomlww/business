@@ -22,9 +22,9 @@ public class Test {
     }
  
     public static void main(String[]args) {
-    	String str="you are my friend#";
+    /*	String str="you are my friend#";
     	String [] row = str.split("#");
-    	List<String[]> list = new ArrayList<String[]>();
+    	List<String[]> list = new ArrayList<String[]>();*/
     	/*for(String r:row){
     		String [] single = r.split(" ");
     		list.add(single);
@@ -34,8 +34,11 @@ public class Test {
     		System.out.println("Sample Output:"+s.length);
     	}*/
     	
-    	 Map<String,String> map = new HashMap<String, String>();
-    	Conditional cl = (Conditional) map.values();
+    	 /*Map<String,String> map = new HashMap<String, String>();
+    	Conditional cl = (Conditional) map.values();*/
+    	double a = 1524;
+    	double b = a/100;
+    	System.out.println(b);
     }
    
 
