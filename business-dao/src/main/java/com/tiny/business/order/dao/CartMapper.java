@@ -10,5 +10,13 @@ public interface CartMapper extends BaseDao{
 	int cartCountByGoodsId(CartModel cart);
 
 	int updateCartNnmber(CartModel cart);
+	
+	/**
+	 * 根据购物车id获取信息
+	 * @param recId
+	 * @return
+	 * @throws Exception
+	 */
+	CartModel queryCartById(String recId) throws Exception;
 
 }

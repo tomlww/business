@@ -90,4 +90,5 @@
   		select <include refid="good"/> from goods
   		where goods_name like '%'|| #{goodsName} ||'%'
   </select>
+  
 </mapper>

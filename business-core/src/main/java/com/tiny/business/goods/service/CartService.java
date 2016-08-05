@@ -1,6 +1,7 @@
 package com.tiny.business.goods.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,4 +11,12 @@ public interface CartService {
 	public int addCart(HttpServletRequest request, CartModel cart) throws Exception;
 
 	public List<CartModel> getListCartInfo(HttpServletRequest request) throws Exception;
+	/**
+	 * 确应订单
+	 * @param request
+	 * @param cartInfo
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> confirmOrder(HttpServletRequest request, String cartInfo) throws Exception;
 }

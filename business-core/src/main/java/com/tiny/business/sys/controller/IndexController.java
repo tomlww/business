@@ -65,4 +65,14 @@ public class IndexController {
 		//List<E> listGoods = indexService.getGoodsTypeAd(adModel);
 		return rmap;
 	}
+	
+	/**
+	 * 收货地址
+	 * @return
+	 */
+	@RequestMapping("/intiAdr")
+	public ModelAndView initAdr(){
+		ModelAndView model = new ModelAndView("sys/address");
+		return model;
+	}
 }

@@ -18,15 +18,15 @@ public class GoodsModel {
 	private String clickCount;//点击次数
 	private String brandId;//品牌id
 	private String providerName;//供货商名称
-	private String goodsNumber;//库存数量
-	private String goodsWeight;//商品重量
-	private String shopPrice;//商店售价
+	private int goodsNumber;//库存数量
+	private int goodsWeight;//商品重量
+	private double shopPrice;//商店售价
 	private String keywords;//商品关键词
 	private String goodsBrief;//商品简单说明
 	private String isReal;//是否实体商品
 	private String extensionCode;//虚拟商品代码
 	private String isOnSale;//能否销售(上架、下架)
-	private String integral;//商品的积分
+	private int integral;//商品的积分
 	private String suppliersId;//供货商 id
 	private String goodsTypeId;//商品型号
 	private GoodsTypeModel goodsTypeModel;//商品类型model
@@ -95,24 +95,7 @@ public class GoodsModel {
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
-	public String getGoodsNumber() {
-		return goodsNumber;
-	}
-	public void setGoodsNumber(String goodsNumber) {
-		this.goodsNumber = goodsNumber;
-	}
-	public String getGoodsWeight() {
-		return goodsWeight;
-	}
-	public void setGoodsWeight(String goodsWeight) {
-		this.goodsWeight = goodsWeight;
-	}
-	public String getShopPrice() {
-		return shopPrice;
-	}
-	public void setShopPrice(String shopPrice) {
-		this.shopPrice = shopPrice;
-	}
+	
 	public String getKeywords() {
 		return keywords;
 	}
@@ -143,10 +126,28 @@ public class GoodsModel {
 	public void setIsOnSale(String isOnSale) {
 		this.isOnSale = isOnSale;
 	}
-	public String getIntegral() {
+	public int getGoodsNumber() {
+		return goodsNumber;
+	}
+	public void setGoodsNumber(int goodsNumber) {
+		this.goodsNumber = goodsNumber;
+	}
+	public int getGoodsWeight() {
+		return goodsWeight;
+	}
+	public void setGoodsWeight(int goodsWeight) {
+		this.goodsWeight = goodsWeight;
+	}
+	public double getShopPrice() {
+		return shopPrice;
+	}
+	public void setShopPrice(double shopPrice) {
+		this.shopPrice = shopPrice;
+	}
+	public int getIntegral() {
 		return integral;
 	}
-	public void setIntegral(String integral) {
+	public void setIntegral(int integral) {
 		this.integral = integral;
 	}
 	public String getSuppliersId() {

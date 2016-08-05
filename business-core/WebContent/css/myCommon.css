@@ -194,6 +194,11 @@ img {
 	flex-direction: column;
 }
 
+.box-pack-justify{
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
 /* 水平垂直居中 */
 .box-center{
 	-moz-box-pack:center;
@@ -321,7 +326,7 @@ img {
 }
 
 /**错误提示begin*/
-#error{
+	#error{
 	    position: absolute;
 	    z-index: 9999;
 	    bottom: 10%;
@@ -344,29 +349,29 @@ img {
 	    margin: 0 auto;
 	    padding: .5rem;
 	}
-.from-below { 
-	-webkit-transform: translateX(100%); 
-	-ms-transform: scale(0.5); 
-	-o-transform: scale(0.5); 
-	transform: scale(0.5); 
-	opacity: 0; 
-	-moz-opacity: 0; 
-    filter: alpha(opacity=0);
-	-webkit-transition: all 530ms; 
-	-o-transition: 500ms; 
-	transition: 500ms; 
-} 
-.effeckt-show{ 
-	-webkit-transform: translateX(0); 
-	-ms-transform: scale(1); 
-	-o-transform: scale(1); 
-	transform: scale(1); 
-	opacity: 1; 
-	-moz-opacity: 1; 
-    filter: alpha(opacity=1);
-} 
-.effeckt-show .effeckt-modal { 
-	visibility: visible; 
-}
+	.from-below { 
+		-webkit-transform: translateX(100%); 
+		-ms-transform: scale(0.5); 
+		-o-transform: scale(0.5); 
+		transform: scale(0.5); 
+		opacity: 0; 
+		-moz-opacity: 0; 
+	    filter: alpha(opacity=0);
+		-webkit-transition: all 530ms; 
+		-o-transition: 500ms; 
+		transition: 500ms; 
+	} 
+	.effeckt-show{ 
+		-webkit-transform: translateX(0); 
+		-ms-transform: scale(1); 
+		-o-transform: scale(1); 
+		transform: scale(1); 
+		opacity: 1; 
+		-moz-opacity: 1; 
+	    filter: alpha(opacity=1);
+	} 
+	.effeckt-show .effeckt-modal { 
+		visibility: visible; 
+	}
 
 /**错误提示end*/

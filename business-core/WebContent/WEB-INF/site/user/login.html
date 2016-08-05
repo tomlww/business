@@ -214,8 +214,8 @@
   			  url: '${ctxPath}/user/login',
   			  data: user,
   			  dataType: 'json',
-  			  timeout: 300,
-  			  context: $('body'),
+  			  timeout: 3000,
+  			 /*  context: $('body'), */
   			  success: function(data){
   			    if(data.status == "fail"){
   			    	showError("用户名或者密码错误!");

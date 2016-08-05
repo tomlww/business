@@ -131,4 +131,13 @@ public class UserController {
 		return rmap;
 	}
 	
+	/**
+	 * 跳转到个人中心页面 
+	 * @return
+	 */
+	@RequestMapping("/myInfo")
+	public ModelAndView myInfo(){
+		return new ModelAndView("user/myInfo");
+	}
+	
 }
