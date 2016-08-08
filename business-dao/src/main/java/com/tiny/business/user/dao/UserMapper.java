@@ -1,5 +1,7 @@
 package com.tiny.business.user.dao;
 
+import java.util.Map;
+
 import com.tiny.business.user.model.UserModel;
 
 /** 
@@ -23,7 +25,7 @@ public interface UserMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public int login(UserModel userModel) throws Exception;
+	public Map<String, Object> login(UserModel userModel) throws Exception;
 	/**
 	 * 修改用户密码
 	 * @param userModel

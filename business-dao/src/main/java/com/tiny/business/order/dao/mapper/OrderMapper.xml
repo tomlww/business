@@ -8,11 +8,55 @@
       <result column="shippingStatus" property="shippingStatus"/>
       <result column="consignee" property="consignee"/>
       <result column="province" property="province"/>
+      <result column="city" property="city"/>
+      <result column="district" property="district"/>
+      
   </resultMap>
   
   <insert id="insertData" parameterType="com.tiny.business.order.model.OrderInfoModel" >
-      insert into order_info (cat_id,cat_name,parent_id,sort_order,suppliers_Id,img_url)
-      values(#{catId},#{catName},#{parentId},#{sortOrder},#{suppliersId},#{imgUrl}) 
+      insert into order_info (
+      order_id,
+      order_sn,
+      user_id,
+      order_status,
+      consignee,
+      country,
+      province,
+      city,
+      district,
+      address,
+      mobile,
+      shipping_id,
+      shipping_name,
+      pay_id,
+      pay_name,
+      goods_amount,
+      shipping_fee,
+      integral,
+      order_amount,
+      add_time
+      )
+      values(
+      #{orderId},
+      #{userId},
+      #{orderStatus},
+      #{consignee},
+      #{country},
+      #{province},
+      #{city},
+      #{district},
+      #{address},
+      #{mobile},
+      #{shippingId},
+      #{shippingName},
+      #{payId},
+      #{payName},
+      #{goodsAmount},
+      #{shippingFee},
+      #{integral},
+      #{orderAmount},
+     	now()
+      ) 
   </insert>
   
   <select id="queryForList" parameterType="string"  resultMap="orderInfoMap">
@@ -27,4 +71,9 @@
   <update id="updateData" parameterType="com.tiny.business.order.model.OrderInfoModel">
       update order_info set cat_name = #{catName} ,img_url = #{imgUrl} where cat_id = #{catId}
   </update>
+  
+  <insert id="addOrderGoods" parameterType="com.tiny.business.order.model.OrderGoodsModel">
+      
+  </insert>
+  
 </mapper>

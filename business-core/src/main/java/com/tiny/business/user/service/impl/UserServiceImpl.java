@@ -1,5 +1,7 @@
 package com.tiny.business.user.service.impl;
 
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
@@ -38,14 +40,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int login(UserVo userVo) throws Exception {
+	public Map<String, Object> login(UserVo userVo) throws Exception {
 		logger.debug("====用户login开始===");
 		UserModel userModel = new UserModel();
 		BeanUtils.copyProperties(userVo, userModel);
 		
-		int count = userMapper.login(userModel);
-		logger.debug("====用户login结束===count==="+count);
-		return count;
+		Map<String, Object> map = userMapper.login(userModel);
+		logger.debug("====用户login结束===count==="+map.get("count"));
+		return map;
 	}
 
 	@Override

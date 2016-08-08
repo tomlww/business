@@ -85,10 +85,12 @@ public class UserController {
 				rmap.put("status", "fail");
 				return rmap;
 			}
-			int count = userService.login(userVo);
+			Map<String, Object> map = userService.login(userVo);
+			int count = Integer.valueOf(String.valueOf(map.get("count")));
 			if(count>0){
 				request.getSession().setAttribute("userName", userVo.getUserName());
 				request.getSession().setAttribute("userCode", userVo.getUserCode());
+				request.getSession().setAttribute("isAdmin", map.get("isAdmin"));//是否是管理员 即是买家也是卖家
 				rmap.put("status", "success");
 			}else{
 				rmap.put("status", "fail");

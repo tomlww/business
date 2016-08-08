@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>企榕网最专业的第三方公司注册服务平台-企业注册、代理记账、法务</title>
+	<script src="js/jquery.min.js"></script>
+	<script>
+	$(function(){
+		index();
+		function getRootPath(){
+			var strFullPath=window.document.location.href;
+			var strPath=window.document.location.pathname;
+			var pos=strFullPath.indexOf(strPath);
+			var prePath=strFullPath.substring(0,pos);
+			var postPath=strPath.substring(0,strPath.substr(1).indexOf('/')+1);
+			return(prePath+postPath);
+		}
+		function index(){
+			var strFullPath=getRootPath();
+			location.href=strFullPath+"/sys/index";	
+		}
+	});
+	</script>
+</head>
+
+</html>
