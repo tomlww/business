@@ -22,8 +22,9 @@ public class OrderInfoModel {
 	private String payName;//支付方式名称
 	private String invPayee;//发票抬头
 	private String invContent;//发票内容
-	private String goodsAmount;//商品总金额
-	private String shippingFee;//运费
+	private double goodsAmount;//商品总金额
+	private double orderAmount;//订单总金额
+	private Integer shippingFee;//运费
 	private String moneyPaid;//已付款金额
 	private Integer integral;//积分
 	private String confirmTime;//确认时间
@@ -133,16 +134,22 @@ public class OrderInfoModel {
 	public void setInvContent(String invContent) {
 		this.invContent = invContent;
 	}
-	public String getGoodsAmount() {
+	public double getGoodsAmount() {
 		return goodsAmount;
 	}
-	public void setGoodsAmount(String goodsAmount) {
+	public void setGoodsAmount(double goodsAmount) {
 		this.goodsAmount = goodsAmount;
 	}
-	public String getShippingFee() {
+	public double getOrderAmount() {
+		return orderAmount;
+	}
+	public void setOrderAmount(double orderAmount) {
+		this.orderAmount = orderAmount;
+	}
+	public Integer getShippingFee() {
 		return shippingFee;
 	}
-	public void setShippingFee(String shippingFee) {
+	public void setShippingFee(Integer shippingFee) {
 		this.shippingFee = shippingFee;
 	}
 	public String getMoneyPaid() {

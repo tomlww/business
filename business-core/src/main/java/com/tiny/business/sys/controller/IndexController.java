@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +76,11 @@ public class IndexController {
 	public ModelAndView initAdr(){
 		ModelAndView model = new ModelAndView("sys/address");
 		return model;
+	}
+	
+	@RequestMapping("/myShop")
+	public ModelAndView toMyShop(HttpServletRequest request){
+	//	request.get
+		return new ModelAndView("redirect:http://127.0.0.1:8080/business-mg");
 	}
 }

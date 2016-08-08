@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author user
  *
  */
-public class OrderGoods implements Serializable{
+public class OrderGoodsModel implements Serializable{
 
 	/**
 	 * 

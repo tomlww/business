@@ -18,5 +18,12 @@ public interface CartMapper extends BaseDao{
 	 * @throws Exception
 	 */
 	CartModel queryCartById(String recId) throws Exception;
+	/**
+	 * 删除购物车
+	 * @param recId 购物车id
+	 * @return
+	 * @throws Exception
+	 */
+	int deleteById(String recId) throws Exception;
 
 }

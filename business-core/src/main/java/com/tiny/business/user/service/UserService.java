@@ -1,5 +1,7 @@
 package com.tiny.business.user.service;
 
+import java.util.Map;
+
 import com.tiny.business.user.vo.UserVo;
 
 /** 
@@ -14,7 +16,7 @@ public interface UserService {
 
 	void add(UserVo userVo) throws Exception;
 
-	int login(UserVo userVo) throws Exception;
+	Map<String, Object> login(UserVo userVo) throws Exception;
 
 	int updatePws(UserVo userVo) throws Exception;
 

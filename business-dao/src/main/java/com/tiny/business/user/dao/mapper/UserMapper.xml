@@ -13,8 +13,8 @@
      insert into users(user_name,user_code,password,mobile_phone,reg_time) values(#{userName},#{userCode},#{password},#{mobile},now())
   </insert>
   
-   <select id="login" parameterType="com.tiny.business.user.model.UserModel" resultType="java.lang.Integer">
-       select count(*) from users where user_code=#{userCode} and password = #{password}
+   <select id="login" parameterType="com.tiny.business.user.model.UserModel" resultType="map">
+       select count(*) count, u.is_admin isAdmin from users u where u.user_code=#{userCode} and u.password = #{password}
    </select>
   
    <update id="updatePws" parameterType="com.tiny.business.user.model.UserModel">
