@@ -194,6 +194,11 @@
 			<artifactId>beetl</artifactId>
 		</dependency>
 		
+		<!-- redis jar -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
 		
 		
 		<dependency>

@@ -1,0 +1,377 @@
+@charset "utf-8";
+
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}   ol,ul{margin:0; padding:0;}
+ul {
+  list-style: none;
+  font-size: 0;
+}
+li {
+  font-size: 12px;
+}
+/*****  mobile E  *****/
+/*  320px布局 */
+html {
+  font-size: 16px;
+}
+/* iphone 6 */
+@media (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 16px;
+  }
+}
+/* iphone6 plus */
+ @media (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  html {
+    font-size: 18px;
+  }
+} 
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+body{
+	position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
+   /*  font-size: 0.85rem; */
+    line-height: 1.5;
+    /* color: #3d4145; */
+    background: #eeeeee;
+    overflow: hidden;
+}
+
+.content-div{
+	width: 80%;
+	margin: 0 auto;
+}
+.fl-rig{
+	float: right;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a, input, textarea, select, button {
+    outline: 0;
+}
+.bar-nav {
+    top: 0;
+}
+
+.pd-tp1{
+	padding-top: 1rem;
+}
+.pd-lf1{
+	padding-left: 1rem;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float:right;
+}
+.bd-rd5px{
+	border-radius: 5px;
+}
+/* 颜色begin */
+.c9 {
+ 	color: #999;
+}
+
+.c696969{
+	color: #696969;
+}
+
+.color-white{
+	color: white;
+}
+
+.bkg-color{
+	background: #ffc0cb;
+}
+
+.bkg-white{
+	background:white;
+}
+/* 颜色end */
+
+
+/**高度begin*/
+.h10rem{
+	height: 10rem;
+}
+.h3rem{
+	height: 3rem;	
+}
+.h7{
+	height: 7rem;
+}
+.h8{
+	height: 8rem;
+}
+.h2{
+	height: 2rem;
+}
+.h2d5{
+	height: 2.5rem;
+}
+
+/*高度end*/
+
+/* 宽度begin */
+.wth49{
+	width: 49%;
+}
+.wth100{
+	width: 100%;
+}
+/* 宽度end */
+
+.brd0{
+	border: 0;
+}
+
+/* 字体大小begin */
+.ft-size5{
+	font-size: .5rem;
+}
+.ft-size8{
+	font-size: .8rem;
+}
+.ft-size1{
+	font-size: 1rem;
+}
+/* 字体大小end*/
+
+/**图片begin*/
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+/**图片end*/
+
+/**盒子布局begin*/
+.flex{
+	 display:-moz-box;
+    display:-webkit-box;
+    display:box;
+    display: flex;
+}
+.wrap{
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+
+	}
+.flex-center {
+  display: box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  box-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  box-pack: center;
+}
+.flex-column{
+	-moz-flex-direction: column;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+}
+
+.box-pack-justify{
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+/* 水平垂直居中 */
+.box-center{
+	-moz-box-pack:center;
+	-webkit-box-pack:center;
+	-o-box-pack:center;
+	box-pack:center;
+
+	-moz-box-align:center;
+	-webkit-box-align:center;
+	-o-box-align:center;
+	box-align:center;
+	
+}
+
+.flex-1 {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.flex-2 {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+.span-between{
+	-webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+/**盒子布局end*/
+.ta-ct{
+	 text-align: center;
+}
+.tc-rg{
+	text-align: right;
+}
+.tc-lf{
+	text-align: left;
+}
+.mg-top3{
+	margin-top: 3rem;
+}
+.mg-top1{
+	margin-top: 1rem;
+}
+.bd-btm{
+	border-bottom: 1px solid #AAA;
+}
+.bred{
+	border: 1px solid red;
+}
+
+/**头部begin*/
+.bar {
+	    position: absolute;
+	    right: 0;
+	    left: 0;
+	    z-index: 10;
+	    height: 2.2rem;
+	    padding-right: 0.5rem;
+	    padding-left: 0.5rem;
+	    background-color: #f7f7f8;
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	}
+	.bar:after {
+	    content: '';
+	    position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    right: auto;
+	    top: auto;
+	    height: 1px;
+	    width: 100%;
+	    background-color: #e7e7e7;
+	    display: block;
+	    z-index: 15;
+	    -webkit-transform-origin: 50% 100%;
+	    transform-origin: 50% 100%;
+	}
+	.bar .icon {
+	    position: relative;
+	    z-index: 20;
+	    padding: .5rem .1rem;
+	    font-size: 1rem;
+	    line-height: 1.2rem;
+	}
+
+	.title {
+	    position: absolute;
+	    display: block;
+	    width: 100%;
+	    padding: 0;
+	    margin: 0 -0.5rem;
+	    font-size: 0.85rem;
+	    font-weight: 500;
+	    line-height: 2.2rem;
+	    color: #3d4145;
+	    text-align: center;
+	    white-space: nowrap;
+	}
+/**头部end*/
+
+/**中间和头部底部隔开begin*/
+
+.bar-tab ~ .content {
+    bottom: 2.5rem;
+}
+.bar-nav ~ .content {
+    top: 2.2rem;
+}
+
+/**中间和头部底部隔开end*/
+
+.display-none{
+	display: none;
+}
+
+.display-block{
+	display: block;
+}
+
+/**错误提示begin*/
+	#error{
+	    position: absolute;
+	    z-index: 9999;
+	    bottom: 10%;
+	    left: 50%;
+	    text-align: center;
+	   /*  border: 1px solid; */
+	    position: absolute;
+	   
+	    transform: translate(-50%, -50%);
+	    display:none;
+		}
+	.error-lable{
+		display: block;
+	    min-height: 2rem;
+	    line-height: 2rem;
+	    min-width: 4rem;
+	    background: #444;
+	    color: white;
+	    border-radius: 5px;
+	    margin: 0 auto;
+	    padding: .5rem;
+	}
+	.from-below { 
+		-webkit-transform: translateX(100%); 
+		-ms-transform: scale(0.5); 
+		-o-transform: scale(0.5); 
+		transform: scale(0.5); 
+		opacity: 0; 
+		-moz-opacity: 0; 
+	    filter: alpha(opacity=0);
+		-webkit-transition: all 530ms; 
+		-o-transition: 500ms; 
+		transition: 500ms; 
+	} 
+	.effeckt-show{ 
+		-webkit-transform: translateX(0); 
+		-ms-transform: scale(1); 
+		-o-transform: scale(1); 
+		transform: scale(1); 
+		opacity: 1; 
+		-moz-opacity: 1; 
+	    filter: alpha(opacity=1);
+	} 
+	.effeckt-show .effeckt-modal { 
+		visibility: visible; 
+	}
+
+/**错误提示end*/

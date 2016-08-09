@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 import com.tiny.business.sys.model.AdPositionModel;
 import com.tiny.business.sys.service.IndexService;
 import com.tiny.business.sys.vo.AdPositionVo;
+import com.tiny.business.util.JedisPoolUtile;
+import com.tiny.business.util.RSAUtil;
 
 @Controller
 @RequestMapping("/sys")
@@ -77,10 +82,30 @@ public class IndexController {
 		ModelAndView model = new ModelAndView("sys/address");
 		return model;
 	}
-	
+	/**
+	 * 进入我的店铺
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/myShop")
 	public ModelAndView toMyShop(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("redirect:http://127.0.0.1:8080/business-mg");
+		String userCode;
+		try {
+			userCode = (String) request.getSession().getAttribute("userCode");
+			if(null==userCode || "".equals(userCode)){
+				model.setViewName("user/login");
+				return model;
+			}
+			 JedisPool pool = JedisPoolUtile.getPool();
+			 Jedis jedis = pool.getResource();
+			 String privateKeyString = jedis.srandmember("privateKey");
+			 String value = RSAUtil.privateEncrypt(userCode, privateKeyString);//用户名加密之后
+			 model.setViewName("redirect:http://127.0.0.1:8080/business-mg/sys/init/"+value);
+		} catch (Exception e) {
+			logger.error("进入我的店铺异常");
+		}
 	//	request.get
-		return new ModelAndView("redirect:http://127.0.0.1:8080/business-mg");
+		return model;
 	}
 }

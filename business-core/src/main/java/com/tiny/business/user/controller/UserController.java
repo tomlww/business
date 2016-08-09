@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 import com.tiny.business.user.service.UserService;
 import com.tiny.business.user.vo.UserVo;
+import com.tiny.business.util.JedisPoolUtile;
 
 /** 
  * @Title: UserController.java 
@@ -69,6 +74,7 @@ public class UserController {
 	@ResponseBody
 	public Map<String, String> login(UserVo userVo,HttpServletRequest request){
 		Map<String, String> rmap = new HashMap<String, String>();
+		HttpSession session = request.getSession();
 		try {
 			if(null == userVo){
 				logger.error("=========UserVo is null登录===========");
@@ -87,10 +93,26 @@ public class UserController {
 			}
 			Map<String, Object> map = userService.login(userVo);
 			int count = Integer.valueOf(String.valueOf(map.get("count")));
+			String isAdmin = String.valueOf(map.get("isAdmin"));
+			String userCode = String.valueOf(map.get("userCode"));
+			String userName = String.valueOf(map.get("userName"));
 			if(count>0){
-				request.getSession().setAttribute("userName", userVo.getUserName());
-				request.getSession().setAttribute("userCode", userVo.getUserCode());
-				request.getSession().setAttribute("isAdmin", map.get("isAdmin"));//是否是管理员 即是买家也是卖家
+				if("1".equals(isAdmin)){ //是否是卖家
+					 JedisPool pool = JedisPoolUtile.getPool();
+					 Jedis jedis = pool.getResource();
+					// String key = request.getSession().getId();
+					 Map<String,String> user=new HashMap<String,String>();
+					 if(userName!=null && !"".equals(userName))
+		             user.put("userName",userName);
+					 
+		             user.put("userCode",userCode);
+		             user.put("isAdmin",isAdmin);
+		             jedis.hmset(userCode,user); //将用户信息放入redies里面如果 是管理员
+				}
+				
+				session.setAttribute("userName", userName);
+				session.setAttribute("userCode", userCode);
+				session.setAttribute("isAdmin",isAdmin);//是否是管理员 即是买家也是卖家
 				rmap.put("status", "success");
 			}else{
 				rmap.put("status", "fail");

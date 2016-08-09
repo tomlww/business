@@ -14,7 +14,7 @@
   </insert>
   
    <select id="login" parameterType="com.tiny.business.user.model.UserModel" resultType="map">
-       select count(*) count, u.is_admin isAdmin from users u where u.user_code=#{userCode} and u.password = #{password}
+       select count(*) count, u.is_admin isAdmin,user_code userCode,user_name userName from users u where u.user_code=#{userCode} and u.password = #{password}
    </select>
   
    <update id="updatePws" parameterType="com.tiny.business.user.model.UserModel">
